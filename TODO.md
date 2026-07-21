@@ -18,7 +18,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [x] Checklist operacional criado em `TODO.md`.
 - [x] Registro de continuidade criado em `handoff.md`.
 - [x] Ambiente de desenvolvimento validado.
-- [ ] Solução .NET criada.
+- [x] Solução .NET criada e estrutura inicial validada.
 - [ ] MVP funcional em Docker Compose.
 - [ ] Testes automatizados concluídos.
 - [ ] Implantação Kubernetes validada.
@@ -129,38 +129,39 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 2.5 Configurar referências entre projetos
 
-- [ ] Application referencia Domain.
-- [ ] Infrastructure referencia Domain.
-- [ ] Infrastructure referencia Application.
-- [ ] API referencia Application.
-- [ ] API referencia Infrastructure.
-- [ ] Worker referencia Application.
-- [ ] Worker referencia Infrastructure.
-- [ ] Tests referencia Domain.
-- [ ] Tests referencia Application.
-- [ ] Confirmar que Domain não referencia infraestrutura ou frameworks web.
+- [x] Application referencia Domain.
+- [x] Infrastructure referencia Domain.
+- [x] Infrastructure referencia Application.
+- [x] API referencia Application.
+- [x] API referencia Infrastructure.
+- [x] Worker referencia Application.
+- [x] Worker referencia Infrastructure.
+- [x] Tests referencia Domain.
+- [x] Tests referencia Application.
+- [x] Confirmar que Domain não referencia infraestrutura ou frameworks web.
 
 ### 2.6 Instalar pacotes
 
-- [ ] Instalar `Npgsql.EntityFrameworkCore.PostgreSQL` em Infrastructure.
-- [ ] Instalar `Microsoft.EntityFrameworkCore.Design` em Infrastructure.
-- [ ] Instalar `RabbitMQ.Client` em Infrastructure.
-- [ ] Instalar `Swashbuckle.AspNetCore` em API se o template não o fornecer.
-- [ ] Instalar `Microsoft.EntityFrameworkCore.Design` em API.
-- [ ] Instalar `Microsoft.EntityFrameworkCore.Design` em Worker se necessário.
-- [ ] Instalar ou atualizar a ferramenta global `dotnet-ef`.
-- [ ] Fixar versões compatíveis com .NET 10 nos arquivos `.csproj`.
-- [ ] Executar `dotnet list package` e revisar as versões resolvidas.
+- [x] Instalar `Npgsql.EntityFrameworkCore.PostgreSQL` em Infrastructure.
+- [x] Instalar `Microsoft.EntityFrameworkCore.Design` em Infrastructure.
+- [x] Instalar `RabbitMQ.Client` em Infrastructure.
+- [x] Confirmar que a API já usa `Microsoft.AspNetCore.OpenApi`; `Swashbuckle.AspNetCore` não foi necessário.
+- [x] Fixar `Microsoft.OpenApi` 2.7.5 para corrigir a vulnerabilidade `GHSA-v5pm-xwqc-g5wc`.
+- [x] Instalar `Microsoft.EntityFrameworkCore.Design` em API.
+- [x] Confirmar que `Microsoft.EntityFrameworkCore.Design` não é necessário no Worker; a API será o projeto de inicialização das migrations.
+- [x] Instalar ou atualizar a ferramenta global `dotnet-ef`.
+- [x] Fixar versões compatíveis com .NET 10 nos arquivos `.csproj`.
+- [x] Executar `dotnet list package` e revisar as versões resolvidas.
 
 ### 2.7 Validar estrutura inicial
 
-- [ ] Executar `dotnet restore`.
-- [ ] Executar `dotnet build`.
-- [ ] Executar `dotnet test`.
-- [ ] Confirmar zero erros.
-- [ ] Revisar `git status --short`.
-- [ ] Criar o commit `chore: create OrderFlow solution structure`.
-- [ ] Atualizar `handoff.md` com o hash do commit.
+- [x] Executar `dotnet restore`.
+- [x] Executar `dotnet build`.
+- [x] Executar `dotnet test`.
+- [x] Confirmar zero erros.
+- [x] Revisar `git status --short`.
+- [x] Criar o commit `chore: configure project references and dependencies` (`371152c`).
+- [x] Atualizar `handoff.md` com o hash do commit.
 
 ---
 
@@ -354,7 +355,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 ### 5.6 Inicialização da API
 
 - [ ] Registrar Controllers.
-- [ ] Registrar Swagger/OpenAPI.
+- [ ] Validar e manter o OpenAPI nativo do ASP.NET Core.
 - [ ] Registrar SignalR.
 - [ ] Registrar Infrastructure.
 - [ ] Registrar OrderService.
@@ -514,7 +515,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Executar `docker compose ps`.
 - [ ] Confirmar todos os serviços saudáveis.
 - [ ] Abrir `http://localhost:8080`.
-- [ ] Abrir `http://localhost:8080/swagger`.
+- [ ] Abrir `http://localhost:8080/openapi/v1.json`.
 - [ ] Validar `http://localhost:8080/health` com resposta 200.
 - [ ] Abrir `http://localhost:15672`.
 - [ ] Executar o fluxo produto -> cliente -> pedido -> Worker -> chat.
@@ -699,7 +700,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Capturar catálogo/produtos e pedidos.
 - [ ] Capturar duas janelas trocando mensagens.
 - [ ] Capturar mudança de status em tempo real.
-- [ ] Capturar Swagger.
+- [ ] Capturar o documento OpenAPI ou a interface de exploração adotada.
 - [ ] Capturar RabbitMQ Management.
 - [ ] Capturar containers no Docker Desktop.
 - [ ] Capturar recursos Kubernetes.

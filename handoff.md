@@ -6,12 +6,12 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 
 | Campo | Valor |
 |---|---|
-| Data da última atualização | 2026-07-20 |
-| Fase atual | Inicialização da solução em andamento |
-| Último item concluído | Inclusão dos seis projetos no `OrderFlow.slnx` e preparação do commit de bootstrap |
-| Próximo item | Configurar as referências entre Domain, Application, Infrastructure, API, Worker e Tests |
+| Data da última atualização | 2026-07-21 |
+| Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
+| Último item concluído | Referências, dependências, restore, build e teste da estrutura inicial validados no commit `371152c` |
+| Próximo item | Criar `src/OrderFlow.Domain/Orders/OrderStatus.cs` e iniciar os testes das transições de status |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Não iniciado |
+| Status do MVP | Fundação concluída; implementação funcional ainda não iniciada |
 
 ## Último trabalho realizado
 
@@ -21,6 +21,11 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Este arquivo foi criado para registrar continuamente o estado, evidências, decisões e próxima ação.
 - O Poppler 26.02.0 foi movido para `C:\Users\mateu\.local\poppler\26.02.0\Library\bin` e registrado no PATH do usuário.
 - O `README.md` foi reformulado como vitrine do projeto, priorizando core funcional, arquitetura, tecnologias, domínio, endpoints, decisões técnicas e diferenciais.
+- As referências entre Domain, Application, Infrastructure, API, Worker e Tests foram configuradas e conferidas projeto por projeto.
+- Infrastructure recebeu Npgsql/EF Core 10, RabbitMQ.Client 7.2.1 e as ferramentas de design necessárias.
+- A API manteve o OpenAPI nativo, recebeu as ferramentas de design do EF Core e fixou `Microsoft.OpenApi` 2.7.5 para eliminar o alerta `NU1903`.
+- A ferramenta global `dotnet-ef` foi atualizada de 5.0.2 para 10.0.10.
+- Restore, inventário de pacotes, verificação de vulnerabilidades, build e teste foram concluídos com sucesso.
 
 ## Arquivos existentes na raiz
 
@@ -30,9 +35,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `handoff.md` - contexto de continuidade e estado mais recente.
 - `README.md` - apresentação pública e documentação principal do repositório.
 - `.gitignore` - regras de exclusão versionadas no repositório.
-- `OrderFlow.slnx` - solução .NET 10 criada, ainda sem projetos.
+- `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git` e commit mais recente `05800c2 add readme`. A solução e os seis projetos-base existem, mas ainda não foram adicionados ao `OrderFlow.slnx`, referenciados entre si ou restaurados.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit técnico mais recente é `371152c chore: configure project references and dependencies`. A solução contém os seis projetos-base, com referências e dependências configuradas e validações iniciais concluídas.
 
 ## Decisões já tomadas
 
@@ -95,30 +100,34 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 - Diretórios `src` e `tests` criados e validados na raiz do repositório.
 - Projetos Domain, Application, Infrastructure, API, Worker e Tests gerados com target `net10.0` e opção `--no-restore`.
 - Seis arquivos `.csproj` conferidos; API usa `Microsoft.NET.Sdk.Web`, Worker usa `Microsoft.NET.Sdk.Worker` e os demais usam `Microsoft.NET.Sdk`.
-- Template da API incluiu `Microsoft.AspNetCore.OpenApi` 10.0.8; Worker incluiu `Microsoft.Extensions.Hosting` 10.0.8; Tests incluiu xUnit, Microsoft.NET.Test.Sdk e coverlet.
+- O template da API incluiu inicialmente `Microsoft.AspNetCore.OpenApi` 10.0.8, depois atualizado para 10.0.10; Worker incluiu `Microsoft.Extensions.Hosting` 10.0.8; Tests incluiu xUnit, Microsoft.NET.Test.Sdk e coverlet.
 - `OrderFlow.slnx` organizado com pasta lógica `/src/` contendo cinco projetos e `/tests/` contendo `OrderFlow.Tests`.
 - `dotnet sln .\OrderFlow.slnx list` conferido com exatamente seis projetos.
-- Bootstrap preparado para commit com 27 arquivos antes da atualização final deste handoff; referências entre projetos, restore, build e testes ainda não foram executados.
+- Referências entre projetos conferidas: Domain sem dependências; Application para Domain; Infrastructure para Domain/Application; API e Worker para Application/Infrastructure; Tests para Domain/Application.
+- `Npgsql.EntityFrameworkCore.PostgreSQL` 10.0.3, `Microsoft.EntityFrameworkCore.Design` 10.0.10 e `RabbitMQ.Client` 7.2.1 instalados em Infrastructure.
+- `Microsoft.AspNetCore.OpenApi` atualizado para 10.0.10 e `Microsoft.EntityFrameworkCore.Design` 10.0.10 instalado na API.
+- O primeiro restore detectou `NU1903` em `Microsoft.OpenApi` 2.0.0; a referência foi fixada em 2.7.5, versão corrigida da linha 2.x, e o novo restore terminou sem avisos.
+- Inventário de pacotes e verificação de dependências vulneráveis concluídos sem novas ocorrências.
+- `dotnet build .\OrderFlow.slnx --no-restore` concluído sem avisos ou erros.
+- `dotnet test .\OrderFlow.slnx --no-build --no-restore` concluiu com 1 teste aprovado, 0 falhas e 0 ignorados.
+- Commit `371152c chore: configure project references and dependencies` criado com os cinco arquivos `.csproj` alterados.
 
 ## Próxima ação exata
 
-Na próxima sessão, configurar as referências permitidas entre os projetos:
+Na próxima sessão, iniciar a Fase 2 pelo status do pedido:
 
 ```powershell
-dotnet add .\src\OrderFlow.Application\OrderFlow.Application.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj
-dotnet add .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj .\src\OrderFlow.Application\OrderFlow.Application.csproj
-dotnet add .\src\OrderFlow.Api\OrderFlow.Api.csproj reference .\src\OrderFlow.Application\OrderFlow.Application.csproj .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj
-dotnet add .\src\OrderFlow.Worker\OrderFlow.Worker.csproj reference .\src\OrderFlow.Application\OrderFlow.Application.csproj .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj
-dotnet add .\tests\OrderFlow.Tests\OrderFlow.Tests.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj .\src\OrderFlow.Application\OrderFlow.Application.csproj
+New-Item -ItemType Directory -Path .\src\OrderFlow.Domain\Orders
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Orders\OrderStatus.cs
 ```
 
-Depois, conferir os `ProjectReference`, executar um único restore e validar build/test.
+Implementar `Created`, `Confirmed`, `Preparing`, `Shipped`, `Delivered` e `Cancelled`, definir onde as transições válidas serão protegidas e criar testes para fluxos permitidos e rejeitados antes de avançar para as demais entidades.
 
 ## Pendências e riscos imediatos
 
-- Revisar a compatibilidade das versões dos pacotes NuGet quando eles forem adicionados.
 - Validar novamente as portas antes de iniciar o Docker Compose.
 - Verificar documentação oficial no momento de instalar versões, pois a apostila foi preparada em julho de 2026.
+- Avaliar a adoção de um tool manifest local para tornar a versão do `dotnet-ef` reproduzível no repositório.
 
 ## Histórico resumido
 
@@ -136,6 +145,8 @@ Depois, conferir os `ProjectReference`, executar um único restore e validar bui
 | 2026-07-20 | Diretórios-base | `src` e `tests` criados e validados |
 | 2026-07-20 | Projetos-base | Seis projetos `net10.0` gerados sem restore individual |
 | 2026-07-20 | Solução organizada | Seis projetos adicionados ao `OrderFlow.slnx`; referências ficam para a próxima sessão |
+| 2026-07-21 | Referências e dependências | Limites entre camadas configurados; EF Core/Npgsql, RabbitMQ e OpenAPI fixados no commit `371152c` |
+| 2026-07-21 | Validação da Fase 1 | Restore e build sem avisos; 1 teste aprovado; nenhuma vulnerabilidade de pacote restante |
 
 ## Modelo para a próxima atualização
 

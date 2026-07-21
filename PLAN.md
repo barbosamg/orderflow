@@ -37,7 +37,7 @@ Ao final do MVP será possível:
 | `OrderFlow.Domain` | Entidades, enums e regras centrais sem dependências de infraestrutura |
 | `OrderFlow.Application` | DTOs, contratos e casos de uso |
 | `OrderFlow.Infrastructure` | EF Core, PostgreSQL, migrations e integração RabbitMQ |
-| `OrderFlow.Api` | Controllers, Swagger, health check, SignalR e página de demonstração |
+| `OrderFlow.Api` | Controllers, OpenAPI, health check, SignalR e página de demonstração |
 | `OrderFlow.Worker` | Consumo e processamento assíncrono de eventos |
 | `OrderFlow.Tests` | Testes unitários e, posteriormente, testes de integração |
 
@@ -80,15 +80,16 @@ Os itens abaixo ficam no backlog avançado e não devem bloquear a primeira vers
 
 ### Tarefas
 
-- [ ] Confirmar Windows 11 e PowerShell atualizados.
-- [ ] Validar WSL 2 com `wsl --status` e `wsl --update`.
-- [ ] Instalar ou validar .NET 10 SDK.
-- [ ] Instalar ou validar Git.
-- [ ] Instalar Docker Desktop com backend WSL 2.
-- [ ] Habilitar Kubernetes no Docker Desktop.
-- [ ] Instalar ou validar `kubectl`.
-- [ ] Escolher VS Code ou Visual Studio e instalar extensões úteis.
-- [ ] Confirmar que nenhuma porta necessária está ocupada: 5432, 5672, 8080 e 15672.
+- [x] Confirmar Windows 11 e PowerShell atualizados.
+- [x] Validar WSL 2 com `wsl --status` e `wsl --update`.
+- [x] Instalar ou validar .NET 10 SDK.
+- [x] Instalar ou validar Git.
+- [x] Instalar Docker Desktop com backend WSL 2.
+- [x] Habilitar Kubernetes no Docker Desktop.
+- [x] Instalar ou validar `kubectl`.
+- [x] Escolher VS Code como editor principal.
+- [ ] Instalar extensões úteis para C#, Docker, Kubernetes, REST e YAML.
+- [x] Confirmar que nenhuma porta necessária está ocupada: 5432, 5672, 8080 e 15672.
 
 ### Evidências
 
@@ -113,7 +114,7 @@ Todos os comandos respondem corretamente, o Docker apresenta Client e Server e e
 
 ## 5. Fases de implementação
 
-### Fase 1 - Estrutura da solução
+### Fase 1 - Estrutura da solução (concluída em 2026-07-21)
 
 #### Tarefas
 
@@ -121,9 +122,9 @@ Todos os comandos respondem corretamente, o Docker apresenta Client e Server e e
 - [x] Criar `OrderFlow.slnx`, formato padrão do .NET 10.
 - [x] Criar os projetos Domain, Application, Infrastructure, API, Worker e Tests.
 - [x] Adicionar todos os projetos à solução.
-- [ ] Configurar referências respeitando os limites de cada camada.
-- [ ] Instalar EF Core/Npgsql, RabbitMQ.Client, Swagger e ferramentas de migrations.
-- [ ] Criar `.gitignore` e validar restore/build inicial.
+- [x] Configurar referências respeitando os limites de cada camada.
+- [x] Instalar EF Core/Npgsql, RabbitMQ.Client, OpenAPI nativo e ferramentas de migrations.
+- [x] Criar `.gitignore` e validar restore/build/test inicial.
 - [ ] Preparar diretórios `requests`, `k8s`, `docs` e `.github/workflows` quando forem necessários.
 
 #### Comandos executados
@@ -141,7 +142,7 @@ dotnet new worker -n OrderFlow.Worker -o .\src\OrderFlow.Worker --framework net1
 dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10.0 --no-restore
 ```
 
-O uso de `--framework net10.0` fixa explicitamente o target inicial. O uso de `--no-restore` evita restaurações repetidas; será feito um único restore depois que projetos e referências estiverem configurados.
+O uso de `--framework net10.0` fixou explicitamente o target inicial. O uso de `--no-restore` evitou restaurações repetidas durante o bootstrap; o restore completo foi executado depois da configuração dos projetos, referências e pacotes.
 
 #### Validação
 
@@ -155,9 +156,12 @@ dotnet test
 
 A solução compila sem erros e `OrderFlow.Domain` não referencia ASP.NET Core, EF Core ou RabbitMQ.
 
-#### Commit sugerido
+Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste inicial aprovado e isolamento do projeto Domain confirmado.
 
-`chore: create OrderFlow solution structure`
+#### Commits realizados
+
+- `45ff89c` - `chore: estrutura solução inicial do OrderFlow em .NET 10`
+- `371152c` - `chore: configure project references and dependencies`
 
 ### Fase 2 - Domínio e regras de negócio
 
@@ -237,7 +241,7 @@ O schema é criado por migration, os relacionamentos funcionam e o banco rejeita
 - [ ] Consolidar itens repetidos ou rejeitá-los explicitamente para evitar baixa incorreta de estoque.
 - [ ] Implementar criação, detalhamento e alteração de status do pedido.
 - [ ] Implementar histórico de mensagens por HTTP.
-- [ ] Configurar Controllers, Swagger, arquivos estáticos e health check.
+- [ ] Configurar Controllers, OpenAPI nativo, arquivos estáticos e health check.
 - [ ] Criar coleção `.http` com o fluxo completo e dados encadeados.
 
 #### Endpoints previstos
@@ -258,7 +262,7 @@ O schema é criado por migration, os relacionamentos funcionam e o banco rejeita
 
 #### Critério de saída
 
-O fluxo produto -> cliente -> pedido pode ser executado pelo Swagger ou arquivo `.http`, com total e estoque corretos no banco.
+O fluxo produto -> cliente -> pedido pode ser executado pelo arquivo `.http`, com contrato publicado em OpenAPI e total e estoque corretos no banco.
 
 #### Commit sugerido
 
@@ -449,7 +453,7 @@ Manter uma réplica da API no MVP. Para escalar SignalR, planejar sticky session
 
 - pipeline verde;
 - imagens disponíveis no GHCR;
-- screenshot do Swagger;
+- evidência do documento OpenAPI ou da interface de exploração adotada;
 - duas janelas no mesmo chat;
 - mudança de status em tempo real;
 - exchange, fila e consumidor no RabbitMQ Management;
@@ -556,4 +560,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Executar a seção **4. Pré-requisitos e validação do ambiente**. Com o ambiente aprovado, iniciar a **Fase 1 - Estrutura da solução** e produzir o primeiro commit funcional.
+Iniciar a **Fase 2 - Domínio e regras de negócio** criando `OrderStatus` com `Created`, `Confirmed`, `Preparing`, `Shipped`, `Delivered` e `Cancelled`; em seguida, implementar e testar as transições permitidas e rejeitadas.

@@ -181,7 +181,7 @@ O domínio permanece independente de ASP.NET Core, Entity Framework Core e Rabbi
 | Kubernetes | Deployments, Services, ConfigMap, Secret, probes e PVC |
 | GitHub Actions | Build, testes e publicação de imagens |
 | GHCR | Registro das imagens da API e do Worker |
-| OpenAPI / Swagger | Descoberta e teste dos endpoints |
+| OpenAPI | Descoberta e documentação dos endpoints |
 
 ## Modelo de domínio
 
@@ -296,14 +296,15 @@ OrderFlow/
 |   `-- OrderFlow.Worker/
 |-- tests/
 |   `-- OrderFlow.Tests/
-|-- requests/
-|-- k8s/
-|-- docs/
-|-- .github/workflows/
-|-- docker-compose.yml
+|-- .gitignore
+|-- PLAN.md
+|-- TODO.md
+|-- handoff.md
 |-- OrderFlow.slnx
 `-- README.md
 ```
+
+Os diretórios `requests`, `k8s`, `docs` e `.github/workflows`, além do `docker-compose.yml`, serão criados nas fases correspondentes.
 
 ### Bootstrap executado
 
@@ -322,7 +323,18 @@ dotnet new worker -n OrderFlow.Worker -o .\src\OrderFlow.Worker --framework net1
 dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10.0 --no-restore
 ```
 
-Todos os projetos usam `net10.0`. O restore será executado uma única vez após a configuração das referências entre camadas.
+Todos os projetos usam `net10.0`. As referências entre camadas foram configuradas, as dependências iniciais foram fixadas e a solução passou por restore, build e teste em 2026-07-21.
+
+### Estado atual da fundação
+
+- `OrderFlow.Domain` permanece sem dependências de infraestrutura;
+- `OrderFlow.Application` referencia apenas Domain;
+- API e Worker consomem Application e Infrastructure;
+- Infrastructure usa Npgsql/EF Core e RabbitMQ.Client;
+- a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
+- `dotnet restore` e `dotnet build` concluíram sem avisos;
+- o teste inicial do template foi aprovado;
+- commit técnico da etapa: `371152c`.
 
 ## Qualidade e confiabilidade
 
@@ -351,7 +363,7 @@ Esse comando disponibilizará:
 | Serviço | Endereço |
 |---|---|
 | Aplicação e chat | `http://localhost:8080` |
-| Swagger | `http://localhost:8080/swagger` |
+| Documento OpenAPI | `http://localhost:8080/openapi/v1.json` |
 | Health check | `http://localhost:8080/health` |
 | RabbitMQ Management | `http://localhost:15672` |
 | PostgreSQL | `localhost:5432` |
@@ -361,7 +373,7 @@ Esse comando disponibilizará:
 
 ## Roadmap
 
-- [ ] Preparação do ambiente e estrutura da solução;
+- [x] Preparação do ambiente e estrutura da solução;
 - [ ] domínio, Entity Framework Core e PostgreSQL;
 - [ ] API de produtos, clientes e pedidos;
 - [ ] RabbitMQ e Worker idempotente;
