@@ -21,10 +21,30 @@ public class Product
     }
 
     public Product(
-        string name,
-        string? description,
-        decimal price,
-        int stock)
+    string name,
+    string? description,
+    decimal price,
+    int stock)
+    {
+        if (stock < 0)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(stock),
+                "Product stock cannot be negative.");
+        }
+
+        Id = Guid.NewGuid();
+        Stock = stock;
+        IsActive = true;
+        CreatedAt = DateTimeOffset.UtcNow;
+
+        UpdateDetails(name, description, price);
+    }
+
+    public void UpdateDetails(
+    string name,
+    string? description,
+    decimal price)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -45,22 +65,11 @@ public class Product
                 "Product price must be greater than zero.");
         }
 
-        if (stock < 0)
-        {
-            throw new ArgumentOutOfRangeException(
-                nameof(stock),
-                "Product stock cannot be negative.");
-        }
-
-        Id = Guid.NewGuid();
         Name = name.Trim();
         Description = string.IsNullOrWhiteSpace(description)
             ? null
             : description.Trim();
         Price = normalizedPrice;
-        Stock = stock;
-        IsActive = true;
-        CreatedAt = DateTimeOffset.UtcNow;
     }
 
     public void IncreaseStock(int quantity)

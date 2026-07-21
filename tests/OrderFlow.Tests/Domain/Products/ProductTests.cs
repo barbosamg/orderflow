@@ -210,4 +210,110 @@ public class ProductTests
 
         Assert.True(product.IsActive);
     }
+
+    [Fact]
+    public void UpdateDetails_ShouldUpdateAndNormalizeProductData()
+    {
+        var product = new Product(
+            "Coffee",
+            "Original description",
+            10m,
+            5);
+
+        var originalId = product.Id;
+        var originalCreatedAt = product.CreatedAt;
+
+        product.UpdateDetails(
+            "  Premium Coffee  ",
+            "  New description  ",
+            20.555m);
+
+        Assert.Equal(originalId, product.Id);
+        Assert.Equal("Premium Coffee", product.Name);
+        Assert.Equal("New description", product.Description);
+        Assert.Equal(20.56m, product.Price);
+        Assert.Equal(5, product.Stock);
+        Assert.True(product.IsActive);
+        Assert.Equal(originalCreatedAt, product.CreatedAt);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void UpdateDetails_ShouldSetDescriptionToNull_WhenDescriptionIsEmpty(
+        string? description)
+    {
+        var product = new Product(
+            "Coffee",
+            "Original description",
+            10m,
+            5);
+
+        product.UpdateDetails(
+            "Coffee",
+            description,
+            20m);
+
+        Assert.Null(product.Description);
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void UpdateDetails_ShouldThrowWithoutChangingProduct_WhenNameIsInvalid(
+        string? name)
+    {
+        var product = new Product(
+            "Coffee",
+            "Original description",
+            10m,
+            5);
+
+        var exception = Assert.Throws<ArgumentException>(
+            () => product.UpdateDetails(
+                name!,
+                "New description",
+                20m));
+
+        Assert.Equal("name", exception.ParamName);
+        Assert.Equal("Coffee", product.Name);
+        Assert.Equal("Original description", product.Description);
+        Assert.Equal(10m, product.Price);
+    }
+
+    [Fact]
+    public void UpdateDetails_ShouldThrowWithoutChangingProduct_WhenPriceIsInvalid()
+    {
+        decimal[] invalidPrices =
+        [
+            0m,
+            -1m,
+            0.004m
+        ];
+
+        foreach (var invalidPrice in invalidPrices)
+        {
+            var product = new Product(
+                "Coffee",
+                "Original description",
+                10m,
+                5);
+
+            var exception =
+                Assert.Throws<ArgumentOutOfRangeException>(
+                    () => product.UpdateDetails(
+                        "New coffee",
+                        "New description",
+                        invalidPrice));
+
+            Assert.Equal("price", exception.ParamName);
+            Assert.Equal("Coffee", product.Name);
+            Assert.Equal(
+                "Original description",
+                product.Description);
+            Assert.Equal(10m, product.Price);
+        }
+    }
 }
