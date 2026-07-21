@@ -2,7 +2,7 @@ namespace OrderFlow.Domain.Orders;
 
 public class Order
 {
-    private List<OrderItem> MutableItems { get; } = [];
+    private readonly List<OrderItem> MutableItems = [];
 
     public Guid Id { get; private set; }
 
