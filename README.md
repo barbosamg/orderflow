@@ -325,7 +325,7 @@ dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10
 
 Todos os projetos usam `net10.0`. As referências entre camadas foram configuradas, as dependências iniciais foram fixadas e a solução passou por restore, build e teste em 2026-07-21.
 
-### Estado atual da fundação
+### Estado atual do projeto
 
 - `OrderFlow.Domain` permanece sem dependências de infraestrutura;
 - `OrderFlow.Application` referencia apenas Domain;
@@ -344,9 +344,9 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - API e Worker registram a Infrastructure por `AddInfrastructure`, leem a connection string `Postgres` e falham na inicialização quando ela está ausente;
 - os pacotes EF Core e EF Core Relational estão alinhados em 10.0.10, eliminando conflitos de assembly no build;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
-- `dotnet restore` e `dotnet build` concluíram sem avisos;
-- o teste inicial do template foi aprovado;
-- commit técnico da etapa: `371152c`.
+- `dotnet restore`, `dotnet build` e os 89 testes concluíram sem erros ou avisos;
+- os commits funcionais mais recentes da persistência são `cc4fb25`, `ec83caf` e `bb0a416`;
+- a próxima entrega é gerar e revisar a migration `InitialCreate` antes de aplicá-la ao PostgreSQL local.
 
 ## Qualidade e confiabilidade
 

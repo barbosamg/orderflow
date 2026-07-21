@@ -293,7 +293,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Inspecionar tabelas, FKs e índices no banco.
 - [ ] Testar que EventId duplicado é rejeitado.
 - [ ] Executar build e testes.
-- [ ] Criar o commit `feat: add PostgreSQL persistence and initial migration`.
+- [ ] Criar o commit `feat: adiciona persistência PostgreSQL e migration inicial`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -377,7 +377,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Validar baixa de estoque.
 - [ ] Validar rollback em falha intermediária.
 - [ ] Executar build e testes.
-- [ ] Criar o commit `feat: implement product customer and order API`.
+- [ ] Criar o commit `feat: implementa API de produtos clientes e pedidos`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -431,7 +431,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Reenviar o mesmo EventId.
 - [ ] Confirmar ausência de efeito duplicado.
 - [ ] Testar payload inválido sem loop infinito.
-- [ ] Criar o commit `feat: publish and consume order created events`.
+- [ ] Criar o commit `feat: publica e consome eventos de pedido criado`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -480,7 +480,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Alterar status e observar as janelas corretas.
 - [ ] Atualizar a página e recuperar histórico.
 - [ ] Testar reconexão após reiniciar a API.
-- [ ] Criar o commit `feat: add per-order realtime chat and status updates`.
+- [ ] Criar o commit `feat: adiciona chat por pedido e atualizações de status em tempo real`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -523,7 +523,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Executar `docker compose logs --tail 100 worker`.
 - [ ] Confirmar persistência após reiniciar containers.
 - [ ] Documentar que `docker compose down -v` apaga os volumes.
-- [ ] Criar o commit `feat: run OrderFlow stack with Docker Compose`.
+- [ ] Criar o commit `feat: executa stack do OrderFlow com Docker Compose`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -562,7 +562,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Executar `dotnet list package --vulnerable --include-transitive`.
 - [ ] Revisar repositório em busca de segredos.
 - [ ] Executar build Release sem warnings relevantes.
-- [ ] Criar o commit `test: cover domain API messaging and realtime flows`.
+- [ ] Criar o commit `test: cobre domínio API mensageria e fluxos em tempo real`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -640,7 +640,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Excluir um Pod da API e confirmar autorrecuperação.
 - [ ] Escalar Worker para três réplicas.
 - [ ] Confirmar múltiplos consumidores sem duplicidade de efeito.
-- [ ] Criar o commit `feat: deploy OrderFlow to local Kubernetes`.
+- [ ] Criar o commit `feat: implanta OrderFlow no Kubernetes local`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -716,7 +716,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Demonstrar RabbitMQ e Worker.
 - [ ] Demonstrar Docker/Kubernetes e pipeline.
 - [ ] Preparar texto de publicação com decisões técnicas concretas.
-- [ ] Criar o commit `docs: add architecture setup and project demo`.
+- [ ] Criar o commit `docs: adiciona arquitetura configuração e demonstração do projeto`.
 - [ ] Atualizar `handoff.md`.
 
 ---
@@ -743,7 +743,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] Publicar release no GitHub.
 - [ ] Confirmar artefatos, imagens e documentação acessíveis.
 - [ ] Publicar a demonstração no canal escolhido.
-- [ ] Criar o commit final `chore: prepare v1.0.0 release` quando necessário.
+- [ ] Criar o commit final `chore: prepara release v1.0.0` quando necessário.
 - [ ] Atualizar `handoff.md` com estado `MVP concluído`.
 
 ---

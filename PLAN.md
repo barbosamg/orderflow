@@ -110,7 +110,7 @@ Todos os comandos respondem corretamente, o Docker apresenta Client e Server e e
 
 ### Commit sugerido
 
-`chore: document development prerequisites`
+`chore: documenta pré-requisitos de desenvolvimento`
 
 ## 5. Fases de implementação
 
@@ -158,7 +158,7 @@ A solução compila sem erros e `OrderFlow.Domain` não referencia ASP.NET Core,
 
 Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste inicial aprovado e isolamento do projeto Domain confirmado.
 
-#### Commits realizados
+#### Commits realizados até o estado atual
 
 - `45ff89c` - `chore: estrutura solução inicial do OrderFlow em .NET 10`
 - `371152c` - `chore: configure project references and dependencies`
@@ -167,6 +167,12 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - `b947a27` - `feat: adiciona atualização dos dados do produto`
 - `eacd418` - `feat: adiciona entidade de cliente e validações de e-mail`
 - `b244936` - `feat: adiciona item de pedido e cálculo de subtotal`
+- `2ea758a` - `feat: adiciona entidade de pedido e regras de status`
+- `556ddef` - `feat: adiciona entidade de mensagem do chat`
+- `76d948d` - `feat: adiciona entidade de evento processado`
+- `cc4fb25` - `feat: configura persistência de produtos clientes e pedidos`
+- `ec83caf` - `feat: configura persistência de chat e eventos processados`
+- `bb0a416` - `feat: registra infraestrutura e conexão PostgreSQL`
 
 ### Fase 2 - Domínio e regras de negócio
 
@@ -199,7 +205,7 @@ As regras centrais são executáveis e testáveis sem API, banco ou broker.
 
 #### Commit sugerido
 
-`feat: model products customers orders and chat domain`
+`feat: modela domínio de produtos clientes pedidos e chat`
 
 ### Fase 3 - Persistência com PostgreSQL e EF Core
 
@@ -232,7 +238,7 @@ O schema é criado por migration, os relacionamentos funcionam e o banco rejeita
 
 #### Commit sugerido
 
-`feat: add PostgreSQL persistence and initial migration`
+`feat: adiciona persistência PostgreSQL e migration inicial`
 
 ### Fase 4 - API REST e casos de uso
 
@@ -272,7 +278,7 @@ O fluxo produto -> cliente -> pedido pode ser executado pelo arquivo `.http`, co
 
 #### Commit sugerido
 
-`feat: implement product customer and order API`
+`feat: implementa API de produtos clientes e pedidos`
 
 ### Fase 5 - RabbitMQ e Worker
 
@@ -298,7 +304,7 @@ Criar um pedido publica um evento, o Worker o processa uma única vez e somente 
 
 #### Commit sugerido
 
-`feat: publish and consume order created events`
+`feat: publica e consome eventos de pedido criado`
 
 ### Fase 6 - SignalR e interface de demonstração
 
@@ -329,7 +335,7 @@ Chat, histórico e atualização de status funcionam sem vazamento entre salas.
 
 #### Commit sugerido
 
-`feat: add per-order realtime chat and status updates`
+`feat: adiciona chat por pedido e atualizações de status em tempo real`
 
 ### Fase 7 - Docker Compose
 
@@ -363,7 +369,7 @@ docker compose exec rabbitmq rabbitmqctl list_queues name messages consumers
 
 #### Commit sugerido
 
-`feat: run OrderFlow stack with Docker Compose`
+`feat: executa stack do OrderFlow com Docker Compose`
 
 ### Fase 8 - Qualidade, erros e testes de integração
 
@@ -396,7 +402,7 @@ Build e testes passam, erros conhecidos usam Problem Details e os logs permitem 
 
 #### Commit sugerido
 
-`test: cover domain API messaging and realtime flows`
+`test: cobre domínio API mensageria e fluxos em tempo real`
 
 ### Fase 9 - Kubernetes local
 
@@ -438,7 +444,7 @@ Manter uma réplica da API no MVP. Para escalar SignalR, planejar sticky session
 
 #### Commit sugerido
 
-`feat: deploy OrderFlow to local Kubernetes`
+`feat: implanta OrderFlow no Kubernetes local`
 
 ### Fase 10 - CI, documentação e portfólio
 
@@ -474,8 +480,8 @@ Uma pessoa externa consegue clonar o repositório, iniciar o ambiente pelas inst
 #### Commits sugeridos
 
 - `ci: build test and publish container images`
-- `docs: add architecture setup and project demo`
-- `chore: prepare v1.0.0 release`
+- `docs: adiciona arquitetura configuração e demonstração do projeto`
+- `chore: prepara release v1.0.0`
 
 ## 6. Matriz de aceitação do MVP
 

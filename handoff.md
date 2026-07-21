@@ -7,7 +7,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 | Campo | Valor |
 |---|---|
 | Data da última atualização | 2026-07-21 |
-| Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
+| Fase atual | Fase 3 - Persistência com PostgreSQL e EF Core |
 | Último item concluído | Infrastructure registrada na API e no Worker no commit `bb0a416`, com build limpo e 89 testes aprovados |
 | Próximo item | Criar e revisar a migration inicial `InitialCreate` |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
@@ -47,7 +47,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `ProcessedEvent` foi criado com identificador do evento, tipo, payload e instante de processamento em UTC.
 - Foram adicionados 7 casos de teste para criação, normalização e validações do evento, totalizando 89 testes informados como aprovados pelo usuário.
 - `OrderFlowDbContext` passou a expor os seis conjuntos de entidades e aplicar automaticamente as configurações da infraestrutura.
-- Os mapeamentos de produtos, clientes, pedidos, itens, mensagens e eventos processados foram separados por contexto funcional em dois commits informados pelo usuário.
+- Os mapeamentos de produtos, clientes, pedidos e itens foram concluídos no commit `cc4fb25`; chat e eventos processados foram concluídos no commit `ec83caf`.
 - `DependencyInjection.AddInfrastructure` registra o contexto com Npgsql e exige a connection string `Postgres`.
 - API e Worker receberam configuração de desenvolvimento para o laboratório local no commit `bb0a416`.
 - EF Core e EF Core Relational foram alinhados em 10.0.10; restore e build concluíram sem warnings e os 89 testes foram aprovados.
@@ -62,7 +62,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `bb0a416 feat: registra infraestrutura e conexão PostgreSQL`. A solução contém os seis projetos-base, as entidades da Fase 2 e a infraestrutura inicial de persistência.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `bb0a416 feat: registra infraestrutura e conexão PostgreSQL`, seguido pelo fechamento documental `2839db9`. A branch local está quatro commits à frente de `origin/main`. A solução contém os seis projetos-base, as entidades da Fase 2 e a infraestrutura inicial de persistência.
 
 ## Decisões já tomadas
 
