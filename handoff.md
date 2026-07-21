@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Alteração controlada dos dados de produto concluída no commit `b947a27`, totalizando 26 testes de produto |
-| Próximo item | Criar `src/OrderFlow.Domain/Customers/Customer.cs` e implementar normalização e validações |
+| Último item concluído | Entidade `Customer` concluída no commit `eacd418`, totalizando 55 testes aprovados na solução |
+| Próximo item | Criar `src/OrderFlow.Domain/Orders/OrderItem.cs` e implementar snapshot, quantidade e subtotal |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status do pedido e entidade de produto implementados no domínio |
+| Status do MVP | Fundação concluída; status do pedido, produto e cliente implementados no domínio |
 
 ## Último trabalho realizado
 
@@ -34,6 +34,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Foram aprovados 18 testes específicos de produto e 35 testes no total antes do commit `8e81c7a`.
 - `Product.UpdateDetails` passou a reutilizar as regras de normalização e validação para alterações de nome, descrição e preço.
 - Foram aprovados 26 testes específicos de produto e 43 testes no total antes do commit `b947a27`.
+- `Customer` foi criado com identidade, nome e e-mail normalizados e data de criação.
+- Foram aprovados 12 casos de cliente e 55 testes no total antes do commit `eacd418`.
+- Os arquivos textuais foram padronizados em UTF-8 sem BOM pelo `.editorconfig` no commit `f304c83`; a referência ao script descartado foi removida no commit `e2a0281`.
 
 ## Arquivos existentes na raiz
 
@@ -45,7 +48,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `b947a27 feat: adiciona atualização dos dados do produto`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `eacd418 feat: adiciona entidade de cliente e validações de e-mail`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
 
 ## Decisões já tomadas
 
@@ -122,14 +125,13 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a entidade de cliente:
+Na próxima sessão, iniciar a entidade de item do pedido:
 
 ```powershell
-New-Item -ItemType Directory -Path .\src\OrderFlow.Domain\Customers
-New-Item -ItemType File -Path .\src\OrderFlow.Domain\Customers\Customer.cs
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Orders\OrderItem.cs
 ```
 
-Implementar identidade, nome, e-mail e data de criação, normalizar os espaços do nome e o e-mail para letras minúsculas, validar os dados e criar testes unitários. A unicidade do e-mail será protegida por índice no banco na fase de persistência.
+Implementar identidade, `ProductId`, snapshot do nome do produto, preço unitário, quantidade e subtotal calculado. Validar os dados no construtor e criar testes unitários antes de iniciar a entidade `Order`.
 
 ## Pendências e riscos imediatos
 

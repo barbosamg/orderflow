@@ -174,7 +174,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Implementar `Product` com nome, descrição, preço, estoque, situação e data de criação.
 - [x] Implementar validações de preço, estoque e quantidade.
 - [x] Implementar exclusão lógica/ativação do produto por comportamento de domínio.
-- [ ] Implementar `Customer` com normalização de nome e e-mail.
+- [x] Implementar `Customer` com normalização de nome e e-mail.
 - [ ] Implementar `Order` e `OrderItem` com cálculo de total no domínio.
 - [ ] Impedir alterações em pedidos entregues ou cancelados.
 - [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
@@ -563,4 +563,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** implementando `Customer` com identidade, nome e e-mail normalizados, data de criação e validações unitárias; a unicidade do e-mail será garantida posteriormente no banco.
+Continuar a **Fase 2 - Domínio e regras de negócio** iniciando `OrderItem`, com identidade, referência ao produto, snapshot do nome e preço unitário, quantidade e subtotal calculado no domínio.

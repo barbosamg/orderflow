@@ -191,11 +191,11 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 3.3 Cliente
 
-- [ ] Criar `Customer` com Id, Name, Email e CreatedAt.
-- [ ] Validar nome obrigatório.
-- [ ] Validar formato mínimo do e-mail.
-- [ ] Normalizar espaços do nome.
-- [ ] Normalizar e-mail para letras minúsculas.
+- [x] Criar `Customer` com Id, Name, Email e CreatedAt.
+- [x] Validar nome obrigatório.
+- [x] Validar formato mínimo do e-mail.
+- [x] Normalizar espaços do nome.
+- [x] Normalizar e-mail para letras minúsculas.
 - [ ] Decidir e implementar unicidade do e-mail no banco.
 
 ### 3.4 Pedido e itens
