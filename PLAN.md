@@ -205,13 +205,13 @@ As regras centrais são executáveis e testáveis sem API, banco ou broker.
 
 #### Tarefas
 
-- [ ] Criar `OrderFlowDbContext` e os `DbSet` necessários.
-- [ ] Criar configurações EF para Product, Customer, Order, OrderItem, ChatMessage e ProcessedEvent.
-- [ ] Definir tamanhos, precisão decimal, conversão de status e comportamentos de exclusão.
-- [ ] Configurar relacionamentos entre cliente, pedido e itens.
-- [ ] Usar acesso por campo para a coleção privada de itens do pedido.
-- [ ] Criar índices para produtos, histórico de pedidos e histórico do chat.
-- [ ] Criar índice único de `ProcessedEvent.EventId`.
+- [x] Criar `OrderFlowDbContext` e os `DbSet` necessários.
+- [x] Criar configurações EF para Product, Customer, Order, OrderItem, ChatMessage e ProcessedEvent.
+- [x] Definir tamanhos, precisão decimal, conversão de status e comportamentos de exclusão.
+- [x] Configurar relacionamentos entre cliente, pedido e itens.
+- [x] Usar acesso por campo para a coleção privada de itens do pedido.
+- [x] Criar índices para produtos, histórico de pedidos e histórico do chat.
+- [x] Criar índice único de `ProcessedEvent.EventId`.
 - [ ] Criar extensão de injeção de dependência da infraestrutura.
 - [ ] Configurar connection string somente para laboratório local.
 - [ ] Criar e revisar a migration `InitialCreate`.
@@ -566,4 +566,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Iniciar a **Fase 3 - Persistência com PostgreSQL e EF Core** criando o `OrderFlowDbContext` e os `DbSet` das entidades do domínio.
+Continuar a **Fase 3 - Persistência com PostgreSQL e EF Core** registrando o contexto na injeção de dependência e configurando a connection string do PostgreSQL para o laboratório local.

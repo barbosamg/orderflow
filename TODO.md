@@ -241,38 +241,38 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 4.1 DbContext
 
-- [ ] Criar `OrderFlowDbContext`.
-- [ ] Adicionar DbSet de Products.
-- [ ] Adicionar DbSet de Customers.
-- [ ] Adicionar DbSet de Orders.
-- [ ] Adicionar DbSet de OrderItems.
-- [ ] Adicionar DbSet de ChatMessages.
-- [ ] Adicionar DbSet de ProcessedEvents.
-- [ ] Aplicar configurações da assembly automaticamente.
+- [x] Criar `OrderFlowDbContext`.
+- [x] Adicionar DbSet de Products.
+- [x] Adicionar DbSet de Customers.
+- [x] Adicionar DbSet de Orders.
+- [x] Adicionar DbSet de OrderItems.
+- [x] Adicionar DbSet de ChatMessages.
+- [x] Adicionar DbSet de ProcessedEvents.
+- [x] Aplicar configurações da assembly automaticamente.
 
 ### 4.2 Mapeamentos EF Core
 
-- [ ] Criar `ProductConfiguration`.
-- [ ] Criar `CustomerConfiguration`.
-- [ ] Criar `OrderConfiguration`.
-- [ ] Criar `OrderItemConfiguration`.
-- [ ] Criar `ChatMessageConfiguration`.
-- [ ] Criar `ProcessedEventConfiguration`.
-- [ ] Definir nomes de tabelas e chaves primárias.
-- [ ] Definir tamanhos máximos das strings.
-- [ ] Definir precisão decimal `12,2`.
-- [ ] Converter status para string.
-- [ ] Configurar Customer -> Orders com exclusão restrita.
-- [ ] Configurar Order -> Items com exclusão em cascata.
-- [ ] Configurar acesso por campo à coleção privada de itens.
+- [x] Criar `ProductConfiguration`.
+- [x] Criar `CustomerConfiguration`.
+- [x] Criar `OrderConfiguration`.
+- [x] Criar `OrderItemConfiguration`.
+- [x] Criar `ChatMessageConfiguration`.
+- [x] Criar `ProcessedEventConfiguration`.
+- [x] Definir nomes de tabelas e chaves primárias.
+- [x] Definir tamanhos máximos das strings.
+- [x] Definir precisão decimal `12,2`.
+- [x] Converter status para string.
+- [x] Configurar Customer -> Orders com exclusão restrita.
+- [x] Configurar Order -> Items com exclusão em cascata.
+- [x] Configurar acesso por campo à coleção privada de itens.
 
 ### 4.3 Índices e integridade
 
-- [ ] Criar índice de `products(name)`.
-- [ ] Criar índice de `orders(customer_id, created_at)`.
-- [ ] Criar índice de `chat_messages(order_id, sent_at)`.
-- [ ] Criar índice único de `processed_events(event_id)`.
-- [ ] Criar índice único de e-mail do cliente, caso a decisão seja mantida.
+- [x] Criar índice de `products(name)`.
+- [x] Criar índice de `orders(customer_id, created_at)`.
+- [x] Criar índice de `chat_messages(order_id, sent_at)`.
+- [x] Criar índice único de `processed_events(event_id)`.
+- [x] Criar índice único de e-mail do cliente.
 - [ ] Revisar nomes e tipos gerados para PostgreSQL.
 
 ### 4.4 Injeção de dependência e configuração

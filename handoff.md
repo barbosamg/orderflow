@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade `ProcessedEvent` concluída no commit `feat: adiciona entidade de evento processado`, totalizando 89 testes informados como aprovados |
-| Próximo item | Criar `OrderFlowDbContext` e adicionar os `DbSet` das entidades do domínio |
+| Último item concluído | `OrderFlowDbContext` e seis mapeamentos EF Core concluídos em commits modulares, com build e testes informados como aprovados |
+| Próximo item | Registrar a infraestrutura na injeção de dependência e configurar a connection string do PostgreSQL |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1 e 2 concluídas; início da persistência com PostgreSQL e EF Core |
+| Status do MVP | Fases 1 e 2 concluídas; contexto e mapeamentos da persistência implementados na Fase 3 |
 
 ## Último trabalho realizado
 
@@ -46,6 +46,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Foram adicionados 9 casos de teste para criação, normalização e validações da mensagem, totalizando 82 testes informados como aprovados pelo usuário.
 - `ProcessedEvent` foi criado com identificador do evento, tipo, payload e instante de processamento em UTC.
 - Foram adicionados 7 casos de teste para criação, normalização e validações do evento, totalizando 89 testes informados como aprovados pelo usuário.
+- `OrderFlowDbContext` passou a expor os seis conjuntos de entidades e aplicar automaticamente as configurações da infraestrutura.
+- Os mapeamentos de produtos, clientes, pedidos, itens, mensagens e eventos processados foram separados por contexto funcional em dois commits informados pelo usuário.
 
 ## Arquivos existentes na raiz
 
@@ -57,7 +59,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente informado pelo usuário é `feat: adiciona entidade de evento processado`. A solução contém os seis projetos-base, com referências e dependências configuradas, e as entidades previstas para a Fase 2 foram implementadas.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente informado pelo usuário é `feat: configura persistência de chat e eventos processados`. A solução contém os seis projetos-base, as entidades da Fase 2 e os mapeamentos iniciais da persistência.
 
 ## Decisões já tomadas
 
@@ -134,14 +136,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar o contexto de persistência:
-
-```powershell
-New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Infrastructure\Persistence
-New-Item -ItemType File -Path .\src\OrderFlow.Infrastructure\Persistence\OrderFlowDbContext.cs
-```
-
-Implementar o `OrderFlowDbContext` com os `DbSet` de `Product`, `Customer`, `Order`, `OrderItem`, `ChatMessage` e `ProcessedEvent`, mantendo os mapeamentos detalhados para a etapa seguinte.
+Na próxima sessão, registrar a infraestrutura na injeção de dependência e configurar o PostgreSQL local. Consultar a documentação e o código real antes de definir o nome do arquivo de extensão, a chave da connection string e os pontos de registro na API e no Worker.
 
 ## Pendências e riscos imediatos
 
@@ -176,6 +171,7 @@ Implementar o `OrderFlowDbContext` com os `DbSet` de `Product`, `Customer`, `Ord
 | 2026-07-21 | Entidade de pedido | Cliente, itens privados, total e mudanças de status validados com 73 testes totais no commit `2ea758a` |
 | 2026-07-21 | Mensagem do chat | Pedido, remetente, texto e limite de 1.000 caracteres cobertos por 82 testes totais informados pelo usuário |
 | 2026-07-21 | Evento processado | Identificador, tipo, payload e instante de processamento cobertos por 89 testes totais informados pelo usuário |
+| 2026-07-21 | Mapeamentos EF Core | Contexto, seis configurações, relacionamentos e índices concluídos em commits modulares informados pelo usuário |
 
 ## Modelo para a próxima atualização
 
