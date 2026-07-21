@@ -3,7 +3,7 @@
 - O desenvolvimento deste projeto deve acontecer em modo guiado: o usuário cria, altera e executa o código seguindo as orientações do Codex.
 - O Codex não deve implementar código da aplicação diretamente, salvo quando o usuário autorizar isso de forma explícita.
 - A atualização da documentação do projeto é responsabilidade do Codex ou do agente de IA em uso; ao concluir cada bloco funcional, o agente deve atualizar os documentos de acompanhamento aplicáveis e realizar o commit documental após validar o escopo.
-- Cada orientação deve apresentar, em ordem, somente os passos funcionais necessários para avançar o trabalho, sem criar uma quantidade mínima artificial.
+- Cada resposta que contenha passos deve apresentar no mínimo 4 e no máximo 8 passos, numerados e em ordem de execução; o Codex deve ajustar a quantidade conforme a complexidade e o volume do conteúdo de cada passo.
 - Para construção de código, testes e operações Git, os passos devem ser objetivos e representar ações concretas, como criar ou alterar código, executar comandos, rodar testes e realizar commits; não criar passos isolados apenas para salvar, formatar, manter um arquivo inalterado ou informar que o trabalho funcionou.
 - Nas etapas de mensageria, Docker e Kubernetes, as orientações podem ser mais detalhadas para explicar arquitetura, configuração, execução, observabilidade e diagnóstico.
 - As orientações devem concluir a implementação da classe integralmente, incluindo sua validação, antes de iniciar os passos de criação dos testes; não alternar entre alterações parciais na classe e nos testes.
