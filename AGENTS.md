@@ -13,4 +13,6 @@
 - Todos os arquivos de um commit devem ser adicionados ao staging por um único comando `git add`, apresentado e executado em um único passo; não dividir o staging do mesmo commit entre comandos ou passos diferentes.
 - Todas as mensagens sugeridas devem seguir Conventional Commits: o prefixo deve permanecer em inglês, como `feat`, `fix`, `docs`, `test`, `refactor` ou `chore`, e a descrição após o prefixo deve ser escrita em português do Brasil.
 - Nas classes C#, os membros devem seguir esta ordem: propriedades no início da classe, agrupadas por visibilidade na ordem `protected`, `private` e `public`; depois os construtores, primeiro o construtor sem parâmetros e em seguida os construtores com parâmetros; por último, os métodos.
+- Sempre que a orientação criar um arquivo, deve fornecer o comando para criar sua pasta, quando necessário, e o comando para criar o próprio arquivo antes de apresentar o conteúdo.
+- Nunca deduzir nomes de campos, propriedades, classes ou arquivos: consultar primeiro a documentação do projeto e, quando ela não definir o nome exato, confirmar o identificador real no código antes de orientar a implementação.
 - Todos os arquivos textuais do projeto devem permanecer em UTF-8 sem BOM, conforme a configuração `charset = utf-8` definida no `.editorconfig`.
