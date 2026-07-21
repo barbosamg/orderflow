@@ -173,6 +173,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - `cc4fb25` - `feat: configura persistência de produtos clientes e pedidos`
 - `ec83caf` - `feat: configura persistência de chat e eventos processados`
 - `bb0a416` - `feat: registra infraestrutura e conexão PostgreSQL`
+- `a7c3bf5` - `feat: adiciona persistência PostgreSQL e migration inicial`
 
 ### Fase 2 - Domínio e regras de negócio
 
@@ -220,8 +221,8 @@ As regras centrais são executáveis e testáveis sem API, banco ou broker.
 - [x] Criar índice único de `ProcessedEvent.EventId`.
 - [x] Criar extensão de injeção de dependência da infraestrutura.
 - [x] Configurar connection string somente para laboratório local.
-- [ ] Criar e revisar a migration `InitialCreate`.
-- [ ] Aplicar a migration e inspecionar o schema gerado.
+- [x] Criar e revisar a migration `InitialCreate`.
+- [x] Aplicar a migration e inspecionar o schema gerado.
 
 #### Índices obrigatórios
 
@@ -235,6 +236,8 @@ As regras centrais são executáveis e testáveis sem API, banco ou broker.
 #### Critério de saída
 
 O schema é criado por migration, os relacionamentos funcionam e o banco rejeita `EventId` duplicado.
+
+Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi aplicada ao PostgreSQL 18 local, as seis tabelas e `__EFMigrationsHistory` foram inspecionadas, as exclusões `RESTRICT` e `CASCADE` foram confirmadas, `EventId` duplicado foi rejeitado e os 89 testes permaneceram aprovados.
 
 #### Commit sugerido
 
@@ -572,4 +575,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 3 - Persistência com PostgreSQL e EF Core** criando e revisando a migration inicial `InitialCreate` antes de aplicá-la ao PostgreSQL local.
+Iniciar a **Fase 4 - API REST e casos de uso** definindo os nomes e criando os DTOs de entrada e saída para produtos, clientes, pedidos, alteração de status e mensagens do chat, sem expor entidades diretamente.

@@ -273,7 +273,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [x] Criar índice de `chat_messages(order_id, sent_at)`.
 - [x] Criar índice único de `processed_events(event_id)`.
 - [x] Criar índice único de e-mail do cliente.
-- [ ] Revisar nomes e tipos gerados para PostgreSQL.
+- [x] Revisar nomes e tipos gerados para PostgreSQL.
 
 ### 4.4 Injeção de dependência e configuração
 
@@ -286,15 +286,15 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 4.5 Migration inicial
 
-- [ ] Executar `dotnet ef migrations add InitialCreate --project src/OrderFlow.Infrastructure --startup-project src/OrderFlow.Api --output-dir Persistence/Migrations`.
-- [ ] Revisar todos os comandos da migration.
-- [ ] Subir PostgreSQL para desenvolvimento.
-- [ ] Executar `dotnet ef database update --project src/OrderFlow.Infrastructure --startup-project src/OrderFlow.Api`.
-- [ ] Inspecionar tabelas, FKs e índices no banco.
-- [ ] Testar que EventId duplicado é rejeitado.
-- [ ] Executar build e testes.
-- [ ] Criar o commit `feat: adiciona persistência PostgreSQL e migration inicial`.
-- [ ] Atualizar `handoff.md`.
+- [x] Executar `dotnet ef migrations add InitialCreate --project src/OrderFlow.Infrastructure --startup-project src/OrderFlow.Api --output-dir Persistence/Migrations`.
+- [x] Revisar todos os comandos da migration.
+- [x] Subir PostgreSQL para desenvolvimento.
+- [x] Executar `dotnet ef database update --project src/OrderFlow.Infrastructure --startup-project src/OrderFlow.Api`.
+- [x] Inspecionar tabelas, FKs e índices no banco.
+- [x] Testar que EventId duplicado é rejeitado.
+- [x] Executar build e testes.
+- [x] Criar o commit `feat: adiciona persistência PostgreSQL e migration inicial` (`a7c3bf5`).
+- [x] Atualizar `handoff.md`.
 
 ---
 

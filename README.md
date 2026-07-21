@@ -345,8 +345,11 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - os pacotes EF Core e EF Core Relational estão alinhados em 10.0.10, eliminando conflitos de assembly no build;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
 - `dotnet restore`, `dotnet build` e os 89 testes concluíram sem erros ou avisos;
-- os commits funcionais mais recentes da persistência são `cc4fb25`, `ec83caf` e `bb0a416`;
-- a próxima entrega é gerar e revisar a migration `InitialCreate` antes de aplicá-la ao PostgreSQL local.
+- a migration `20260721233127_InitialCreate` foi aplicada ao PostgreSQL 18, criando as seis tabelas e o histórico do EF Core;
+- relacionamentos, índices, tipos PostgreSQL e exclusões foram inspecionados, e o banco rejeitou `EventId` duplicado;
+- o PostgreSQL do laboratório usa `localhost:5433` porque uma instância nativa do Windows já ocupa `5432`;
+- os commits funcionais mais recentes da persistência são `cc4fb25`, `ec83caf`, `bb0a416` e `a7c3bf5`;
+- a próxima entrega é definir e criar os DTOs de entrada e saída da API REST.
 
 ## Qualidade e confiabilidade
 
@@ -378,7 +381,8 @@ Esse comando disponibilizará:
 | Documento OpenAPI | `http://localhost:8080/openapi/v1.json` |
 | Health check | `http://localhost:8080/health` |
 | RabbitMQ Management | `http://localhost:15672` |
-| PostgreSQL | `localhost:5432` |
+| PostgreSQL do laboratório atual | `localhost:5433` |
+| PostgreSQL no futuro Docker Compose | `localhost:5432` |
 
 > [!NOTE]
 > O projeto está em desenvolvimento. As instruções serão liberadas como executáveis depois que a implementação e a validação com Docker Compose forem concluídas.
@@ -386,7 +390,7 @@ Esse comando disponibilizará:
 ## Roadmap
 
 - [x] Preparação do ambiente e estrutura da solução;
-- [ ] domínio, Entity Framework Core e PostgreSQL;
+- [x] domínio, Entity Framework Core e PostgreSQL;
 - [ ] API de produtos, clientes e pedidos;
 - [ ] RabbitMQ e Worker idempotente;
 - [ ] SignalR e interface de demonstração;

@@ -7,11 +7,11 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 | Campo | Valor |
 |---|---|
 | Data da última atualização | 2026-07-21 |
-| Fase atual | Fase 3 - Persistência com PostgreSQL e EF Core |
-| Último item concluído | Infrastructure registrada na API e no Worker no commit `bb0a416`, com build limpo e 89 testes aprovados |
-| Próximo item | Criar e revisar a migration inicial `InitialCreate` |
+| Fase atual | Fase 4 - API REST e casos de uso |
+| Último item concluído | Migration `20260721233127_InitialCreate` aplicada e validada no commit `a7c3bf5`, com build limpo e 89 testes aprovados |
+| Próximo item | Definir e criar os DTOs de entrada e saída da API REST |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1 e 2 concluídas; contexto, mapeamentos e injeção de dependência implementados na Fase 3 |
+| Status do MVP | Fases 1, 2 e 3 concluídas; início da API REST e dos casos de uso na Fase 4 |
 
 ## Último trabalho realizado
 
@@ -51,6 +51,11 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `DependencyInjection.AddInfrastructure` registra o contexto com Npgsql e exige a connection string `Postgres`.
 - API e Worker receberam configuração de desenvolvimento para o laboratório local no commit `bb0a416`.
 - EF Core e EF Core Relational foram alinhados em 10.0.10; restore e build concluíram sem warnings e os 89 testes foram aprovados.
+- A migration `20260721233127_InitialCreate` criou as seis tabelas do domínio e `__EFMigrationsHistory` no PostgreSQL 18 local.
+- Tabelas, colunas, tipos, chaves, relacionamentos e índices foram inspecionados; exclusão de cliente ficou `RESTRICT`, enquanto itens e mensagens ficaram `CASCADE`.
+- A chave primária de `processed_events.event_id` rejeitou a segunda inserção do mesmo identificador; o registro de teste foi removido em seguida.
+- Um PostgreSQL nativo do Windows ocupa a porta 5432, portanto o container `orderflow-postgres-dev` publica temporariamente a porta 5433.
+- O build permaneceu sem erros ou warnings e os 89 testes foram aprovados antes do commit `a7c3bf5`.
 
 ## Arquivos existentes na raiz
 
@@ -62,7 +67,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `bb0a416 feat: registra infraestrutura e conexão PostgreSQL`, seguido pelo fechamento documental `2839db9`. A branch local está quatro commits à frente de `origin/main`. A solução contém os seis projetos-base, as entidades da Fase 2 e a infraestrutura inicial de persistência.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `a7c3bf5 feat: adiciona persistência PostgreSQL e migration inicial`. A branch local está um commit à frente de `origin/main`. A solução contém os seis projetos-base, as entidades da Fase 2 e a persistência PostgreSQL concluída na Fase 3.
 
 ## Decisões já tomadas
 
@@ -139,11 +144,12 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, executar o comando documentado para gerar `InitialCreate` em `Persistence/Migrations`, revisar integralmente o código gerado e somente depois preparar o PostgreSQL local para aplicar a migration.
+Na próxima sessão, iniciar a Fase 4 consultando a documentação e o código real para definir os nomes dos DTOs de criação, atualização e resposta de produtos antes de criar os arquivos.
 
 ## Pendências e riscos imediatos
 
 - Validar novamente as portas antes de iniciar o Docker Compose.
+- Manter o PostgreSQL do laboratório em `localhost:5433` enquanto a instância nativa do Windows ocupar `5432`; o Docker Compose futuro continuará planejado para `5432` após resolver o conflito.
 - Verificar documentação oficial no momento de instalar versões, pois a apostila foi preparada em julho de 2026.
 - Avaliar a adoção de um tool manifest local para tornar a versão do `dotnet-ef` reproduzível no repositório.
 
@@ -176,6 +182,7 @@ Na próxima sessão, executar o comando documentado para gerar `InitialCreate` e
 | 2026-07-21 | Evento processado | Identificador, tipo, payload e instante de processamento cobertos por 89 testes totais informados pelo usuário |
 | 2026-07-21 | Mapeamentos EF Core | Contexto, seis configurações, relacionamentos e índices concluídos em commits modulares informados pelo usuário |
 | 2026-07-21 | Injeção de dependência | API e Worker registram Npgsql com a chave `Postgres`; build limpo e 89 testes aprovados no commit `bb0a416` |
+| 2026-07-21 | Migration inicial | Schema PostgreSQL validado, `EventId` duplicado rejeitado e 89 testes aprovados no commit `a7c3bf5` |
 
 ## Modelo para a próxima atualização
 
