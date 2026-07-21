@@ -120,7 +120,7 @@ Todos os comandos respondem corretamente, o Docker apresenta Client e Server e e
 - [x] Inicializar o repositório Git.
 - [x] Criar `OrderFlow.slnx`, formato padrão do .NET 10.
 - [x] Criar os projetos Domain, Application, Infrastructure, API, Worker e Tests.
-- [ ] Adicionar todos os projetos à solução.
+- [x] Adicionar todos os projetos à solução.
 - [ ] Configurar referências respeitando os limites de cada camada.
 - [ ] Instalar EF Core/Npgsql, RabbitMQ.Client, Swagger e ferramentas de migrations.
 - [ ] Criar `.gitignore` e validar restore/build inicial.

@@ -119,13 +119,13 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 2.4 Adicionar projetos à solução
 
-- [ ] Adicionar `OrderFlow.Domain` à solução.
-- [ ] Adicionar `OrderFlow.Application` à solução.
-- [ ] Adicionar `OrderFlow.Infrastructure` à solução.
-- [ ] Adicionar `OrderFlow.Api` à solução.
-- [ ] Adicionar `OrderFlow.Worker` à solução.
-- [ ] Adicionar `OrderFlow.Tests` à solução.
-- [ ] Executar `dotnet sln list` e conferir os seis projetos.
+- [x] Adicionar `OrderFlow.Domain` à solução.
+- [x] Adicionar `OrderFlow.Application` à solução.
+- [x] Adicionar `OrderFlow.Infrastructure` à solução.
+- [x] Adicionar `OrderFlow.Api` à solução.
+- [x] Adicionar `OrderFlow.Worker` à solução.
+- [x] Adicionar `OrderFlow.Tests` à solução.
+- [x] Executar `dotnet sln list` e conferir os seis projetos.
 
 ### 2.5 Configurar referências entre projetos
 

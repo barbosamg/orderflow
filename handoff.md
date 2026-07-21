@@ -8,8 +8,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-20 |
 | Fase atual | Inicialização da solução em andamento |
-| Último item concluído | Geração e validação dos seis projetos-base em `net10.0` |
-| Próximo item | Adicionar os seis projetos ao `OrderFlow.slnx` e conferir a solução |
+| Último item concluído | Inclusão dos seis projetos no `OrderFlow.slnx` e preparação do commit de bootstrap |
+| Próximo item | Configurar as referências entre Domain, Application, Infrastructure, API, Worker e Tests |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
 | Status do MVP | Não iniciado |
 
@@ -96,24 +96,23 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 - Projetos Domain, Application, Infrastructure, API, Worker e Tests gerados com target `net10.0` e opção `--no-restore`.
 - Seis arquivos `.csproj` conferidos; API usa `Microsoft.NET.Sdk.Web`, Worker usa `Microsoft.NET.Sdk.Worker` e os demais usam `Microsoft.NET.Sdk`.
 - Template da API incluiu `Microsoft.AspNetCore.OpenApi` 10.0.8; Worker incluiu `Microsoft.Extensions.Hosting` 10.0.8; Tests incluiu xUnit, Microsoft.NET.Test.Sdk e coverlet.
+- `OrderFlow.slnx` organizado com pasta lógica `/src/` contendo cinco projetos e `/tests/` contendo `OrderFlow.Tests`.
+- `dotnet sln .\OrderFlow.slnx list` conferido com exatamente seis projetos.
+- Bootstrap preparado para commit com 27 arquivos antes da atualização final deste handoff; referências entre projetos, restore, build e testes ainda não foram executados.
 
 ## Próxima ação exata
 
-Na raiz do repositório, adicionar os seis projetos à solução:
+Na próxima sessão, configurar as referências permitidas entre os projetos:
 
 ```powershell
-dotnet sln .\OrderFlow.slnx add `
-  .\src\OrderFlow.Domain\OrderFlow.Domain.csproj `
-  .\src\OrderFlow.Application\OrderFlow.Application.csproj `
-  .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj `
-  .\src\OrderFlow.Api\OrderFlow.Api.csproj `
-  .\src\OrderFlow.Worker\OrderFlow.Worker.csproj `
-  .\tests\OrderFlow.Tests\OrderFlow.Tests.csproj
-
-dotnet sln .\OrderFlow.slnx list
+dotnet add .\src\OrderFlow.Application\OrderFlow.Application.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj
+dotnet add .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj .\src\OrderFlow.Application\OrderFlow.Application.csproj
+dotnet add .\src\OrderFlow.Api\OrderFlow.Api.csproj reference .\src\OrderFlow.Application\OrderFlow.Application.csproj .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj
+dotnet add .\src\OrderFlow.Worker\OrderFlow.Worker.csproj reference .\src\OrderFlow.Application\OrderFlow.Application.csproj .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj
+dotnet add .\tests\OrderFlow.Tests\OrderFlow.Tests.csproj reference .\src\OrderFlow.Domain\OrderFlow.Domain.csproj .\src\OrderFlow.Application\OrderFlow.Application.csproj
 ```
 
-O comando de listagem deve mostrar exatamente os seis projetos.
+Depois, conferir os `ProjectReference`, executar um único restore e validar build/test.
 
 ## Pendências e riscos imediatos
 
@@ -136,6 +135,7 @@ O comando de listagem deve mostrar exatamente os seis projetos.
 | 2026-07-20 | `OrderFlow.slnx` | Solução .NET 10 criada e validada sem projetos |
 | 2026-07-20 | Diretórios-base | `src` e `tests` criados e validados |
 | 2026-07-20 | Projetos-base | Seis projetos `net10.0` gerados sem restore individual |
+| 2026-07-20 | Solução organizada | Seis projetos adicionados ao `OrderFlow.slnx`; referências ficam para a próxima sessão |
 
 ## Modelo para a próxima atualização
 
