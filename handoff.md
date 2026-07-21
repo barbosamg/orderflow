@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade `Order` concluída no commit `2ea758a`, totalizando 73 testes aprovados na solução |
-| Próximo item | Criar `ChatMessage` com `OrderId`, remetente, texto limitado e data de envio |
+| Último item concluído | Entidade `ChatMessage` concluída no commit `feat: adiciona entidade de mensagem do chat`, totalizando 82 testes aprovados na solução |
+| Próximo item | Criar `ProcessedEvent` com identificador do evento, tipo, payload e data de processamento |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status, produto, cliente, item e pedido implementados no domínio |
+| Status do MVP | Fundação concluída; status, produto, cliente, item, pedido e mensagem do chat implementados no domínio |
 
 ## Último trabalho realizado
 
@@ -42,6 +42,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `Order` foi criado com identidade, cliente, coleção privada de itens, total calculado, status e datas de criação e atualização.
 - A entidade rejeita cliente vazio, produto repetido, confirmação de pedido vazio, transições inválidas e inclusão de itens depois do estado `Created`.
 - Foram aprovados 11 casos específicos de pedido e 73 testes no total antes do commit `2ea758a`.
+- `ChatMessage` foi criada com identidade, pedido, remetente normalizado, texto limitado a 1.000 caracteres e data de envio em UTC.
+- Foram adicionados 9 casos de teste para criação, normalização e validações da mensagem, totalizando 82 testes informados como aprovados pelo usuário.
 
 ## Arquivos existentes na raiz
 
@@ -130,14 +132,14 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a entidade de mensagem do chat:
+Na próxima sessão, iniciar a entidade de evento processado:
 
 ```powershell
-New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Domain\Chats
-New-Item -ItemType File -Path .\src\OrderFlow.Domain\Chats\ChatMessage.cs
+New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Domain\Events
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Events\ProcessedEvent.cs
 ```
 
-Implementar identidade, `OrderId`, remetente, texto e data de envio. Validar identificador do pedido, remetente obrigatório, mensagem obrigatória e limite máximo de 1.000 caracteres.
+Implementar identidade do evento, tipo, payload e data de processamento. Validar os campos obrigatórios e manter o modelo preparado para impedir o processamento repetido do mesmo evento no Worker.
 
 ## Pendências e riscos imediatos
 
@@ -170,6 +172,7 @@ Implementar identidade, `OrderId`, remetente, texto e data de envio. Validar ide
 | 2026-07-21 | Entidade de cliente | Nome e e-mail normalizados e validados com 55 testes totais no commit `eacd418` |
 | 2026-07-21 | Item de pedido | Snapshot do produto, arredondamento, quantidade e subtotal com 62 testes totais no commit `b244936` |
 | 2026-07-21 | Entidade de pedido | Cliente, itens privados, total e mudanças de status validados com 73 testes totais no commit `2ea758a` |
+| 2026-07-21 | Mensagem do chat | Pedido, remetente, texto e limite de 1.000 caracteres cobertos por 82 testes totais informados pelo usuário |
 
 ## Modelo para a próxima atualização
 

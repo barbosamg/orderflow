@@ -181,7 +181,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Implementar `Order` com coleção privada de itens e cálculo do total no domínio.
 - [x] Impedir alterações em pedidos entregues ou cancelados.
 - [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
-- [ ] Implementar `ChatMessage` com limite de 1.000 caracteres.
+- [x] Implementar `ChatMessage` com limite de 1.000 caracteres.
 - [ ] Implementar `ProcessedEvent` para idempotência do Worker.
 
 #### Testes mínimos
@@ -191,7 +191,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Rejeição de retirada acima do estoque disponível.
 - [x] Rejeição de pedido sem cliente ou sem itens.
 - [x] Rejeição de alteração em pedido finalizado.
-- [ ] Rejeição de mensagem vazia ou acima do limite.
+- [x] Rejeição de mensagem vazia ou acima do limite.
 
 #### Critério de saída
 
@@ -566,4 +566,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** implementando `ChatMessage`, com identidade, `OrderId`, remetente, texto limitado a 1.000 caracteres e data de envio.
+Continuar a **Fase 2 - Domínio e regras de negócio** implementando `ProcessedEvent`, com identidade do evento, tipo, payload e data de processamento para suportar a idempotência do Worker.

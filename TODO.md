@@ -213,9 +213,9 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 3.5 Chat e eventos processados
 
-- [ ] Criar `ChatMessage`.
-- [ ] Validar OrderId, Sender e Text.
-- [ ] Limitar texto a 1.000 caracteres.
+- [x] Criar `ChatMessage`.
+- [x] Validar OrderId, Sender e Text.
+- [x] Limitar texto a 1.000 caracteres.
 - [ ] Criar `ProcessedEvent`.
 - [ ] Armazenar EventId, EventType, Payload e ProcessedAt.
 
@@ -229,8 +229,8 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [x] Testar pedido sem cliente.
 - [x] Testar alteração de pedido finalizado.
 - [x] Testar transições inválidas de status.
-- [ ] Testar mensagem vazia.
-- [ ] Testar mensagem acima do limite.
+- [x] Testar mensagem vazia.
+- [x] Testar mensagem acima do limite.
 - [x] Executar `dotnet test`.
 - [ ] Criar o commit `feat: model products customers orders and chat domain`.
 - [x] Atualizar `handoff.md`.
