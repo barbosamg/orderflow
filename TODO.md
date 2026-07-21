@@ -277,12 +277,12 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 4.4 Injeção de dependência e configuração
 
-- [ ] Criar `Infrastructure.DependencyInjection`.
-- [ ] Ler a connection string `Postgres`.
-- [ ] Falhar na inicialização se a connection string estiver ausente.
-- [ ] Registrar `OrderFlowDbContext` com Npgsql.
-- [ ] Criar `appsettings.Development.json` para laboratório local.
-- [ ] Garantir que credenciais reais não sejam versionadas.
+- [x] Criar `Infrastructure.DependencyInjection`.
+- [x] Ler a connection string `Postgres`.
+- [x] Falhar na inicialização se a connection string estiver ausente.
+- [x] Registrar `OrderFlowDbContext` com Npgsql.
+- [x] Criar `appsettings.Development.json` para laboratório local.
+- [x] Garantir que credenciais reais não sejam versionadas.
 
 ### 4.5 Migration inicial
 

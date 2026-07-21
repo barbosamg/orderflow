@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | `OrderFlowDbContext` e seis mapeamentos EF Core concluídos em commits modulares, com build e testes informados como aprovados |
-| Próximo item | Registrar a infraestrutura na injeção de dependência e configurar a connection string do PostgreSQL |
+| Último item concluído | Infrastructure registrada na API e no Worker no commit `bb0a416`, com build limpo e 89 testes aprovados |
+| Próximo item | Criar e revisar a migration inicial `InitialCreate` |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1 e 2 concluídas; contexto e mapeamentos da persistência implementados na Fase 3 |
+| Status do MVP | Fases 1 e 2 concluídas; contexto, mapeamentos e injeção de dependência implementados na Fase 3 |
 
 ## Último trabalho realizado
 
@@ -48,6 +48,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Foram adicionados 7 casos de teste para criação, normalização e validações do evento, totalizando 89 testes informados como aprovados pelo usuário.
 - `OrderFlowDbContext` passou a expor os seis conjuntos de entidades e aplicar automaticamente as configurações da infraestrutura.
 - Os mapeamentos de produtos, clientes, pedidos, itens, mensagens e eventos processados foram separados por contexto funcional em dois commits informados pelo usuário.
+- `DependencyInjection.AddInfrastructure` registra o contexto com Npgsql e exige a connection string `Postgres`.
+- API e Worker receberam configuração de desenvolvimento para o laboratório local no commit `bb0a416`.
+- EF Core e EF Core Relational foram alinhados em 10.0.10; restore e build concluíram sem warnings e os 89 testes foram aprovados.
 
 ## Arquivos existentes na raiz
 
@@ -59,7 +62,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente informado pelo usuário é `feat: configura persistência de chat e eventos processados`. A solução contém os seis projetos-base, as entidades da Fase 2 e os mapeamentos iniciais da persistência.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `bb0a416 feat: registra infraestrutura e conexão PostgreSQL`. A solução contém os seis projetos-base, as entidades da Fase 2 e a infraestrutura inicial de persistência.
 
 ## Decisões já tomadas
 
@@ -136,7 +139,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, registrar a infraestrutura na injeção de dependência e configurar o PostgreSQL local. Consultar a documentação e o código real antes de definir o nome do arquivo de extensão, a chave da connection string e os pontos de registro na API e no Worker.
+Na próxima sessão, executar o comando documentado para gerar `InitialCreate` em `Persistence/Migrations`, revisar integralmente o código gerado e somente depois preparar o PostgreSQL local para aplicar a migration.
 
 ## Pendências e riscos imediatos
 
@@ -172,6 +175,7 @@ Na próxima sessão, registrar a infraestrutura na injeção de dependência e c
 | 2026-07-21 | Mensagem do chat | Pedido, remetente, texto e limite de 1.000 caracteres cobertos por 82 testes totais informados pelo usuário |
 | 2026-07-21 | Evento processado | Identificador, tipo, payload e instante de processamento cobertos por 89 testes totais informados pelo usuário |
 | 2026-07-21 | Mapeamentos EF Core | Contexto, seis configurações, relacionamentos e índices concluídos em commits modulares informados pelo usuário |
+| 2026-07-21 | Injeção de dependência | API e Worker registram Npgsql com a chave `Postgres`; build limpo e 89 testes aprovados no commit `bb0a416` |
 
 ## Modelo para a próxima atualização
 

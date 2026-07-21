@@ -341,6 +341,8 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - `ProcessedEvent` registra o identificador, tipo, payload e instante de processamento necessários para a idempotência do Worker;
 - 89 testes automatizados validam as regras implementadas do domínio;
 - o `OrderFlowDbContext` e os seis mapeamentos EF Core configuram tabelas, colunas, relacionamentos, índices e exclusões da persistência PostgreSQL;
+- API e Worker registram a Infrastructure por `AddInfrastructure`, leem a connection string `Postgres` e falham na inicialização quando ela está ausente;
+- os pacotes EF Core e EF Core Relational estão alinhados em 10.0.10, eliminando conflitos de assembly no build;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
 - `dotnet restore` e `dotnet build` concluíram sem avisos;
 - o teste inicial do template foi aprovado;
