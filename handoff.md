@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade `Customer` concluída no commit `eacd418`, totalizando 55 testes aprovados na solução |
-| Próximo item | Criar `src/OrderFlow.Domain/Orders/OrderItem.cs` e implementar snapshot, quantidade e subtotal |
+| Último item concluído | Entidade `OrderItem` concluída no commit `b244936`, totalizando 62 testes aprovados na solução |
+| Próximo item | Criar `src/OrderFlow.Domain/Orders/Order.cs` com cliente, coleção privada, total, status e datas |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status do pedido, produto e cliente implementados no domínio |
+| Status do MVP | Fundação concluída; status do pedido, produto, cliente e item de pedido implementados no domínio |
 
 ## Último trabalho realizado
 
@@ -37,6 +37,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `Customer` foi criado com identidade, nome e e-mail normalizados e data de criação.
 - Foram aprovados 12 casos de cliente e 55 testes no total antes do commit `eacd418`.
 - Os arquivos textuais foram padronizados em UTF-8 sem BOM pelo `.editorconfig` no commit `f304c83`; a referência ao script descartado foi removida no commit `e2a0281`.
+- `OrderItem` foi criado com referência ao produto, snapshot do nome e preço unitário, quantidade e subtotal calculado.
+- Foram aprovados 7 casos de item de pedido e 62 testes no total antes do commit `b244936`.
 
 ## Arquivos existentes na raiz
 
@@ -48,7 +50,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `eacd418 feat: adiciona entidade de cliente e validações de e-mail`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `b244936 feat: adiciona item de pedido e cálculo de subtotal`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
 
 ## Decisões já tomadas
 
@@ -125,13 +127,13 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a entidade de item do pedido:
+Na próxima sessão, iniciar a entidade de pedido:
 
 ```powershell
-New-Item -ItemType File -Path .\src\OrderFlow.Domain\Orders\OrderItem.cs
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Orders\Order.cs
 ```
 
-Implementar identidade, `ProductId`, snapshot do nome do produto, preço unitário, quantidade e subtotal calculado. Validar os dados no construtor e criar testes unitários antes de iniciar a entidade `Order`.
+Implementar identidade, `CustomerId`, coleção privada de itens, total, status e datas de criação e atualização. Validar o cliente no construtor e manter a inclusão de itens e as transições de status controladas por métodos de domínio.
 
 ## Pendências e riscos imediatos
 
@@ -161,6 +163,8 @@ Implementar identidade, `ProductId`, snapshot do nome do produto, preço unitár
 | 2026-07-21 | Regras de colaboração | Conventional Commits com prefixo em inglês e descrição em português registrados no commit `24c2133` |
 | 2026-07-21 | Produto e estoque | Entidade, invariantes, controle de estoque, ativação e desativação com 35 testes totais no commit `8e81c7a` |
 | 2026-07-21 | Atualização de produto | Alteração controlada de nome, descrição e preço com 43 testes totais no commit `b947a27` |
+| 2026-07-21 | Entidade de cliente | Nome e e-mail normalizados e validados com 55 testes totais no commit `eacd418` |
+| 2026-07-21 | Item de pedido | Snapshot do produto, arredondamento, quantidade e subtotal com 62 testes totais no commit `b244936` |
 
 ## Modelo para a próxima atualização
 

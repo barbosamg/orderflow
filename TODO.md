@@ -201,11 +201,11 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 ### 3.4 Pedido e itens
 
 - [ ] Criar `Order` com coleção privada de itens.
-- [ ] Criar `OrderItem`.
+- [x] Criar `OrderItem`.
 - [ ] Validar CustomerId.
-- [ ] Validar ProductId.
-- [ ] Validar quantidade e preço unitário.
-- [ ] Copiar o nome e preço do produto para o item como snapshot.
+- [x] Validar ProductId.
+- [x] Validar quantidade e preço unitário.
+- [x] Copiar o nome e preço do produto para o item como snapshot.
 - [ ] Recalcular o total sempre que um item for incluído.
 - [ ] Impedir pedido vazio.
 - [ ] Definir tratamento de ProductId repetido na mesma requisição.

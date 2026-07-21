@@ -165,6 +165,8 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - `b60410c` - `feat: adiciona status e regras de transição de pedidos`
 - `8e81c7a` - `feat: adiciona entidade de produto e controle de estoque`
 - `b947a27` - `feat: adiciona atualização dos dados do produto`
+- `eacd418` - `feat: adiciona entidade de cliente e validações de e-mail`
+- `b244936` - `feat: adiciona item de pedido e cálculo de subtotal`
 
 ### Fase 2 - Domínio e regras de negócio
 
@@ -175,7 +177,8 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Implementar validações de preço, estoque e quantidade.
 - [x] Implementar exclusão lógica/ativação do produto por comportamento de domínio.
 - [x] Implementar `Customer` com normalização de nome e e-mail.
-- [ ] Implementar `Order` e `OrderItem` com cálculo de total no domínio.
+- [x] Implementar `OrderItem` com snapshot do produto e cálculo de subtotal no domínio.
+- [ ] Implementar `Order` com coleção privada de itens e cálculo do total no domínio.
 - [ ] Impedir alterações em pedidos entregues ou cancelados.
 - [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
 - [ ] Implementar `ChatMessage` com limite de 1.000 caracteres.
@@ -563,4 +566,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** iniciando `OrderItem`, com identidade, referência ao produto, snapshot do nome e preço unitário, quantidade e subtotal calculado no domínio.
+Continuar a **Fase 2 - Domínio e regras de negócio** iniciando `Order`, com identidade, `CustomerId`, coleção privada de itens, total calculado, status e datas de criação e atualização.
