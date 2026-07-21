@@ -178,19 +178,19 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Implementar exclusão lógica/ativação do produto por comportamento de domínio.
 - [x] Implementar `Customer` com normalização de nome e e-mail.
 - [x] Implementar `OrderItem` com snapshot do produto e cálculo de subtotal no domínio.
-- [ ] Implementar `Order` com coleção privada de itens e cálculo do total no domínio.
-- [ ] Impedir alterações em pedidos entregues ou cancelados.
+- [x] Implementar `Order` com coleção privada de itens e cálculo do total no domínio.
+- [x] Impedir alterações em pedidos entregues ou cancelados.
 - [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
 - [ ] Implementar `ChatMessage` com limite de 1.000 caracteres.
 - [ ] Implementar `ProcessedEvent` para idempotência do Worker.
 
 #### Testes mínimos
 
-- [ ] Total calculado para múltiplos itens.
-- [ ] Rejeição de preço, quantidade e estoque inválidos.
-- [ ] Rejeição de retirada acima do estoque disponível.
-- [ ] Rejeição de pedido sem cliente ou sem itens.
-- [ ] Rejeição de alteração em pedido finalizado.
+- [x] Total calculado para múltiplos itens.
+- [x] Rejeição de preço, quantidade e estoque inválidos.
+- [x] Rejeição de retirada acima do estoque disponível.
+- [x] Rejeição de pedido sem cliente ou sem itens.
+- [x] Rejeição de alteração em pedido finalizado.
 - [ ] Rejeição de mensagem vazia ou acima do limite.
 
 #### Critério de saída
@@ -566,4 +566,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** iniciando `Order`, com identidade, `CustomerId`, coleção privada de itens, total calculado, status e datas de criação e atualização.
+Continuar a **Fase 2 - Domínio e regras de negócio** implementando `ChatMessage`, com identidade, `OrderId`, remetente, texto limitado a 1.000 caracteres e data de envio.

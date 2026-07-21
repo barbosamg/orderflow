@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade `OrderItem` concluída no commit `b244936`, totalizando 62 testes aprovados na solução |
-| Próximo item | Criar `src/OrderFlow.Domain/Orders/Order.cs` com cliente, coleção privada, total, status e datas |
+| Último item concluído | Entidade `Order` concluída no commit `2ea758a`, totalizando 73 testes aprovados na solução |
+| Próximo item | Criar `ChatMessage` com `OrderId`, remetente, texto limitado e data de envio |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status do pedido, produto, cliente e item de pedido implementados no domínio |
+| Status do MVP | Fundação concluída; status, produto, cliente, item e pedido implementados no domínio |
 
 ## Último trabalho realizado
 
@@ -39,6 +39,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Os arquivos textuais foram padronizados em UTF-8 sem BOM pelo `.editorconfig` no commit `f304c83`; a referência ao script descartado foi removida no commit `e2a0281`.
 - `OrderItem` foi criado com referência ao produto, snapshot do nome e preço unitário, quantidade e subtotal calculado.
 - Foram aprovados 7 casos de item de pedido e 62 testes no total antes do commit `b244936`.
+- `Order` foi criado com identidade, cliente, coleção privada de itens, total calculado, status e datas de criação e atualização.
+- A entidade rejeita cliente vazio, produto repetido, confirmação de pedido vazio, transições inválidas e inclusão de itens depois do estado `Created`.
+- Foram aprovados 11 casos específicos de pedido e 73 testes no total antes do commit `2ea758a`.
 
 ## Arquivos existentes na raiz
 
@@ -50,7 +53,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `b244936 feat: adiciona item de pedido e cálculo de subtotal`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `2ea758a feat: adiciona entidade de pedido e regras de status`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
 
 ## Decisões já tomadas
 
@@ -127,13 +130,14 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a entidade de pedido:
+Na próxima sessão, iniciar a entidade de mensagem do chat:
 
 ```powershell
-New-Item -ItemType File -Path .\src\OrderFlow.Domain\Orders\Order.cs
+New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Domain\Chats
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Chats\ChatMessage.cs
 ```
 
-Implementar identidade, `CustomerId`, coleção privada de itens, total, status e datas de criação e atualização. Validar o cliente no construtor e manter a inclusão de itens e as transições de status controladas por métodos de domínio.
+Implementar identidade, `OrderId`, remetente, texto e data de envio. Validar identificador do pedido, remetente obrigatório, mensagem obrigatória e limite máximo de 1.000 caracteres.
 
 ## Pendências e riscos imediatos
 
@@ -165,6 +169,7 @@ Implementar identidade, `CustomerId`, coleção privada de itens, total, status 
 | 2026-07-21 | Atualização de produto | Alteração controlada de nome, descrição e preço com 43 testes totais no commit `b947a27` |
 | 2026-07-21 | Entidade de cliente | Nome e e-mail normalizados e validados com 55 testes totais no commit `eacd418` |
 | 2026-07-21 | Item de pedido | Snapshot do produto, arredondamento, quantidade e subtotal com 62 testes totais no commit `b244936` |
+| 2026-07-21 | Entidade de pedido | Cliente, itens privados, total e mudanças de status validados com 73 testes totais no commit `2ea758a` |
 
 ## Modelo para a próxima atualização
 

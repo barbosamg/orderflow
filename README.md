@@ -333,8 +333,11 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - Infrastructure usa Npgsql/EF Core e RabbitMQ.Client;
 - o domínio já contém os seis status do pedido e uma política explícita para transições permitidas e rejeitadas;
 - `Product` protege e atualiza nome, descrição, preço e estoque, além de controlar aumento, baixa, ativação e desativação;
-- `Customer` normaliza e valida nome e e-mail, enquanto `OrderItem` preserva o snapshot do produto e calcula seu subtotal;
-- 62 testes automatizados validam o fluxo de status e as regras implementadas de produto, cliente e item de pedido;
+- `Customer` normaliza e valida nome e e-mail;
+- `OrderItem` preserva o snapshot do produto e calcula seu subtotal;
+- `Order` controla o cliente, mantém sua coleção de itens protegida, calcula o total e valida as mudanças de status;
+- pedidos vazios não podem ser confirmados, produtos repetidos são rejeitados e itens só podem ser incluídos enquanto o pedido está em `Created`;
+- 73 testes automatizados validam as regras implementadas de status, produto, cliente, item de pedido e pedido;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
 - `dotnet restore` e `dotnet build` concluíram sem avisos;
 - o teste inicial do template foi aprovado;

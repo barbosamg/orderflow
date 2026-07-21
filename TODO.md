@@ -200,16 +200,16 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 3.4 Pedido e itens
 
-- [ ] Criar `Order` com coleção privada de itens.
+- [x] Criar `Order` com coleção privada de itens.
 - [x] Criar `OrderItem`.
-- [ ] Validar CustomerId.
+- [x] Validar CustomerId.
 - [x] Validar ProductId.
 - [x] Validar quantidade e preço unitário.
 - [x] Copiar o nome e preço do produto para o item como snapshot.
-- [ ] Recalcular o total sempre que um item for incluído.
-- [ ] Impedir pedido vazio.
-- [ ] Definir tratamento de ProductId repetido na mesma requisição.
-- [ ] Atualizar `UpdatedAt` ao mudar o status.
+- [x] Recalcular o total sempre que um item for incluído.
+- [x] Impedir pedido vazio.
+- [x] Definir tratamento de ProductId repetido na mesma requisição.
+- [x] Atualizar `UpdatedAt` ao mudar o status.
 
 ### 3.5 Chat e eventos processados
 
@@ -221,19 +221,19 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 3.6 Testes unitários do domínio
 
-- [ ] Testar cálculo do total com múltiplos itens.
-- [ ] Testar preço inválido.
-- [ ] Testar estoque negativo.
-- [ ] Testar retirada acima do estoque.
-- [ ] Testar pedido sem itens.
-- [ ] Testar pedido sem cliente.
-- [ ] Testar alteração de pedido finalizado.
-- [ ] Testar transições inválidas de status.
+- [x] Testar cálculo do total com múltiplos itens.
+- [x] Testar preço inválido.
+- [x] Testar estoque negativo.
+- [x] Testar retirada acima do estoque.
+- [x] Testar pedido sem itens.
+- [x] Testar pedido sem cliente.
+- [x] Testar alteração de pedido finalizado.
+- [x] Testar transições inválidas de status.
 - [ ] Testar mensagem vazia.
 - [ ] Testar mensagem acima do limite.
-- [ ] Executar `dotnet test`.
+- [x] Executar `dotnet test`.
 - [ ] Criar o commit `feat: model products customers orders and chat domain`.
-- [ ] Atualizar `handoff.md`.
+- [x] Atualizar `handoff.md`.
 
 ---
 
