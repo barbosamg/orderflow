@@ -182,7 +182,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - [x] Impedir alterações em pedidos entregues ou cancelados.
 - [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
 - [x] Implementar `ChatMessage` com limite de 1.000 caracteres.
-- [ ] Implementar `ProcessedEvent` para idempotência do Worker.
+- [x] Implementar `ProcessedEvent` para idempotência do Worker.
 
 #### Testes mínimos
 
@@ -566,4 +566,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** implementando `ProcessedEvent`, com identidade do evento, tipo, payload e data de processamento para suportar a idempotência do Worker.
+Iniciar a **Fase 3 - Persistência com PostgreSQL e EF Core** criando o `OrderFlowDbContext` e os `DbSet` das entidades do domínio.

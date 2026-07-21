@@ -338,7 +338,8 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - `Order` controla o cliente, mantém sua coleção de itens protegida, calcula o total e valida as mudanças de status;
 - pedidos vazios não podem ser confirmados, produtos repetidos são rejeitados e itens só podem ser incluídos enquanto o pedido está em `Created`;
 - `ChatMessage` valida o pedido e o remetente, normaliza a mensagem e limita o texto a 1.000 caracteres;
-- 82 testes automatizados validam as regras implementadas de status, produto, cliente, item de pedido, pedido e mensagem do chat;
+- `ProcessedEvent` registra o identificador, tipo, payload e instante de processamento necessários para a idempotência do Worker;
+- 89 testes automatizados validam as regras implementadas do domínio;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
 - `dotnet restore` e `dotnet build` concluíram sem avisos;
 - o teste inicial do template foi aprovado;

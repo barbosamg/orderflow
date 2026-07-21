@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade `ChatMessage` concluída no commit `feat: adiciona entidade de mensagem do chat`, totalizando 82 testes aprovados na solução |
-| Próximo item | Criar `ProcessedEvent` com identificador do evento, tipo, payload e data de processamento |
+| Último item concluído | Entidade `ProcessedEvent` concluída no commit `feat: adiciona entidade de evento processado`, totalizando 89 testes informados como aprovados |
+| Próximo item | Criar `OrderFlowDbContext` e adicionar os `DbSet` das entidades do domínio |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status, produto, cliente, item, pedido e mensagem do chat implementados no domínio |
+| Status do MVP | Fases 1 e 2 concluídas; início da persistência com PostgreSQL e EF Core |
 
 ## Último trabalho realizado
 
@@ -44,6 +44,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Foram aprovados 11 casos específicos de pedido e 73 testes no total antes do commit `2ea758a`.
 - `ChatMessage` foi criada com identidade, pedido, remetente normalizado, texto limitado a 1.000 caracteres e data de envio em UTC.
 - Foram adicionados 9 casos de teste para criação, normalização e validações da mensagem, totalizando 82 testes informados como aprovados pelo usuário.
+- `ProcessedEvent` foi criado com identificador do evento, tipo, payload e instante de processamento em UTC.
+- Foram adicionados 7 casos de teste para criação, normalização e validações do evento, totalizando 89 testes informados como aprovados pelo usuário.
 
 ## Arquivos existentes na raiz
 
@@ -55,7 +57,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `2ea758a feat: adiciona entidade de pedido e regras de status`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente informado pelo usuário é `feat: adiciona entidade de evento processado`. A solução contém os seis projetos-base, com referências e dependências configuradas, e as entidades previstas para a Fase 2 foram implementadas.
 
 ## Decisões já tomadas
 
@@ -132,14 +134,14 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a entidade de evento processado:
+Na próxima sessão, iniciar o contexto de persistência:
 
 ```powershell
-New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Domain\Events
-New-Item -ItemType File -Path .\src\OrderFlow.Domain\Events\ProcessedEvent.cs
+New-Item -ItemType Directory -Force -Path .\src\OrderFlow.Infrastructure\Persistence
+New-Item -ItemType File -Path .\src\OrderFlow.Infrastructure\Persistence\OrderFlowDbContext.cs
 ```
 
-Implementar identidade do evento, tipo, payload e data de processamento. Validar os campos obrigatórios e manter o modelo preparado para impedir o processamento repetido do mesmo evento no Worker.
+Implementar o `OrderFlowDbContext` com os `DbSet` de `Product`, `Customer`, `Order`, `OrderItem`, `ChatMessage` e `ProcessedEvent`, mantendo os mapeamentos detalhados para a etapa seguinte.
 
 ## Pendências e riscos imediatos
 
@@ -173,6 +175,7 @@ Implementar identidade do evento, tipo, payload e data de processamento. Validar
 | 2026-07-21 | Item de pedido | Snapshot do produto, arredondamento, quantidade e subtotal com 62 testes totais no commit `b244936` |
 | 2026-07-21 | Entidade de pedido | Cliente, itens privados, total e mudanças de status validados com 73 testes totais no commit `2ea758a` |
 | 2026-07-21 | Mensagem do chat | Pedido, remetente, texto e limite de 1.000 caracteres cobertos por 82 testes totais informados pelo usuário |
+| 2026-07-21 | Evento processado | Identificador, tipo, payload e instante de processamento cobertos por 89 testes totais informados pelo usuário |
 
 ## Modelo para a próxima atualização
 
