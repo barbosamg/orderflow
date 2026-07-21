@@ -1,4 +1,4 @@
-﻿namespace OrderFlow.Infrastructure;
+namespace OrderFlow.Infrastructure;
 
 public class Class1
 {

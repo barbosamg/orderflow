@@ -8,3 +8,4 @@
 - Depois que o usuário concluir um bloco, o Codex deve analisar os resultados antes de fornecer os próximos 5 passos ou mais.
 - Todas as mensagens sugeridas devem seguir Conventional Commits: o prefixo deve permanecer em inglês, como `feat`, `fix`, `docs`, `test`, `refactor` ou `chore`, e a descrição após o prefixo deve ser escrita em português do Brasil.
 - Nas classes C#, os membros devem seguir esta ordem: propriedades no início da classe, agrupadas por visibilidade na ordem `protected`, `private` e `public`; depois os construtores, primeiro o construtor sem parâmetros e em seguida os construtores com parâmetros; por último, os métodos.
+- Todos os arquivos textuais do projeto devem permanecer em UTF-8 sem BOM. Depois de criar ou editar arquivos, executar `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\ensure-utf8-no-bom.ps1`; antes de concluir ou sugerir um commit, executar o mesmo script com `-Check`.

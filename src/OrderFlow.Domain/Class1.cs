@@ -1,4 +1,4 @@
-﻿namespace OrderFlow.Domain;
+namespace OrderFlow.Domain;
 
 public class Class1
 {
