@@ -7,10 +7,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 | Campo | Valor |
 |---|---|
 | Data da última atualização | 2026-07-20 |
-| Fase atual | Documentação-base concluída; preparação do ambiente ainda não iniciada |
-| Último item concluído | Reformulação do `README.md` como apresentação técnica do projeto |
-| Próximo item | `TODO.md` - seção 1.1, validar Windows, PowerShell e WSL 2 |
-| Bloqueios | Nenhum bloqueio conhecido |
+| Fase atual | Inicialização da solução em andamento |
+| Último item concluído | Geração e validação dos seis projetos-base em `net10.0` |
+| Próximo item | Adicionar os seis projetos ao `OrderFlow.slnx` e conferir a solução |
+| Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
 | Status do MVP | Não iniciado |
 
 ## Último trabalho realizado
@@ -29,9 +29,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `TODO.md` - checklist operacional que deve ser marcado durante a implementação.
 - `handoff.md` - contexto de continuidade e estado mais recente.
 - `README.md` - apresentação pública e documentação principal do repositório.
-- `.gitignore` - regras locais de exclusão, ainda não adicionadas ao commit no momento desta atualização.
+- `.gitignore` - regras de exclusão versionadas no repositório.
+- `OrderFlow.slnx` - solução .NET 10 criada, ainda sem projetos.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git` e commit inicial `aa0865b`. Ainda não existem solução .NET, projetos em `src`, testes ou infraestrutura da aplicação.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git` e commit mais recente `05800c2 add readme`. A solução e os seis projetos-base existem, mas ainda não foram adicionados ao `OrderFlow.slnx`, referenciados entre si ou restaurados.
 
 ## Decisões já tomadas
 
@@ -46,6 +47,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 - Produtos serão desativados logicamente em vez de removidos quando puderem ser referenciados por pedidos.
 - Segredos reais não serão commitados.
 - Cada entrega funcional deve terminar com validação, atualização do TODO/handoff e commit pequeno.
+- A solução usará `OrderFlow.slnx`, formato padrão e moderno do .NET 10, em vez do `.sln` legado.
 
 ## Validações já realizadas
 
@@ -56,41 +58,67 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 - `PLAN.md` criado e revisado estruturalmente.
 - `TODO.md` e `handoff.md` criados em 2026-07-20.
 - `README.md` criado e conferido contra o estado real do repositório em 2026-07-20.
+- PowerShell 7.6.3 validado.
+- WSL com versão padrão 2 e distribuição padrão `docker-desktop` validado.
+- Git 2.55.0.windows.3 validado.
+- SDK .NET principal 10.0.300 validado; SDKs 2.2.207, 8.0.423, 9.0.316, 10.0.201 e 10.0.300 instalados.
+- Docker Compose v2.28.1-desktop.1 validado.
+- Cliente kubectl v1.29.2 validado.
+- Na primeira tentativa, `docker version` encontrou o cliente 27.0.3, mas não conectou ao pipe `dockerDesktopLinuxEngine`; o problema foi resolvido ao iniciar o Docker Desktop.
+- Na primeira tentativa, o Kubernetes não possuía `current-context`; o problema foi resolvido após habilitar o cluster local.
+- Docker Desktop 4.32.0 iniciado com Engine 27.0.3 para Linux/amd64.
+- `docker version` validado com Client e Server acessíveis no contexto `desktop-linux`.
+- Contexto Kubernetes `docker-desktop` configurado.
+- Nó `docker-desktop` validado em estado `Ready`, control-plane, Kubernetes v1.29.2.
+- Durante a verificação seguinte, o Docker Desktop informou que sua distro WSL foi encerrada abruptamente (`running wsl-bootstrap: exit status 1`), possivelmente durante o reinício de componentes provocado por `wsl --update`.
+- Recuperação executada com Docker Desktop fechado, `wsl --shutdown` e reinício limpo.
+- Distribuição padrão alterada de `docker-desktop` para `Ubuntu`; ambas permanecem em WSL 2.
+- Engine Docker recuperado com Client e Server 27.0.3 acessíveis.
+- Contexto `docker-desktop` preservado; a primeira chamada ao cluster após o reinício retornou `EOF`, indicando que a API ainda não estava pronta.
+- Nova verificação confirmou Docker Client e Server funcionando, mas `kubectl cluster-info`, `kubectl get nodes` e `kubectl get pods --all-namespaces` continuaram retornando `EOF`.
+- Foi decidido reiniciar o Windows antes de realizar qualquer reset, remoção de distribuição ou alteração destrutiva no cluster.
+- Após reiniciar o Windows, a integração opcional do Docker com Ubuntu falhou ao executar `docker-desktop-user-distro` com `Exec format error`.
+- Como o fluxo do projeto usa PowerShell, foi decidido desabilitar/ignorar temporariamente apenas a integração com Ubuntu, preservando o backend WSL 2 do Docker Desktop.
+- Integração opcional Docker-WSL com Ubuntu desabilitada nas configurações do Docker Desktop.
+- Docker Desktop atualizado de 4.32.0 para 4.82.0; Engine atualizado de 27.0.3 para 29.6.1.
+- Kubernetes atualizado de v1.29.2 para v1.36.1.
+- Control plane acessível em `https://127.0.0.1:65106`.
+- Nó `desktop-control-plane` validado em estado `Ready`.
+- Windows 11 25H2 confirmado pelo build 26200.8894; `Get-ComputerInfo` mostrou o rótulo legado `Windows 10 Home Single Language`.
+- .NET SDK 10.0.300, MSBuild 18.6.3 e runtime .NET 10.0.8 validados em Windows x64.
+- Git configurado com usuário `Mateus Barbosa` e e-mail GitHub noreply.
+- VS Code 1.129.1 x64 validado.
+- Portas 5432, 5672, 8080 e 15672 sem processos em estado `Listen`.
+- Poppler permanece instalado em `C:\Users\mateu\.local\poppler\26.02.0\Library\bin` e registrado no PATH persistente do usuário, mas `pdfinfo` não foi localizado pela sessão PowerShell atual.
+- `OrderFlow.slnx` criado com 25 bytes e conteúdo XML válido `<Solution></Solution>`.
+- `dotnet sln .\OrderFlow.slnx list` confirmou que a solução ainda não possui projetos.
+- Diretórios `src` e `tests` criados e validados na raiz do repositório.
+- Projetos Domain, Application, Infrastructure, API, Worker e Tests gerados com target `net10.0` e opção `--no-restore`.
+- Seis arquivos `.csproj` conferidos; API usa `Microsoft.NET.Sdk.Web`, Worker usa `Microsoft.NET.Sdk.Worker` e os demais usam `Microsoft.NET.Sdk`.
+- Template da API incluiu `Microsoft.AspNetCore.OpenApi` 10.0.8; Worker incluiu `Microsoft.Extensions.Hosting` 10.0.8; Tests incluiu xUnit, Microsoft.NET.Test.Sdk e coverlet.
 
 ## Próxima ação exata
 
-Abrir um novo PowerShell e executar, na ordem:
+Na raiz do repositório, adicionar os seis projetos à solução:
 
 ```powershell
-winver
-$PSVersionTable
-wsl --status
-wsl --update
-git --version
-dotnet --info
-dotnet --list-sdks
-dotnet --version
-docker version
-docker compose version
-kubectl version --client
-kubectl config current-context
-kubectl get nodes
-pdfinfo -v
+dotnet sln .\OrderFlow.slnx add `
+  .\src\OrderFlow.Domain\OrderFlow.Domain.csproj `
+  .\src\OrderFlow.Application\OrderFlow.Application.csproj `
+  .\src\OrderFlow.Infrastructure\OrderFlow.Infrastructure.csproj `
+  .\src\OrderFlow.Api\OrderFlow.Api.csproj `
+  .\src\OrderFlow.Worker\OrderFlow.Worker.csproj `
+  .\tests\OrderFlow.Tests\OrderFlow.Tests.csproj
+
+dotnet sln .\OrderFlow.slnx list
 ```
 
-Depois:
-
-1. registrar as versões e eventuais erros neste arquivo;
-2. marcar os itens comprovados nas seções 1.1 a 1.4 do `TODO.md`;
-3. verificar as portas 5432, 5672, 8080 e 15672;
-4. somente então iniciar a seção 2, criando o repositório e a solução.
+O comando de listagem deve mostrar exatamente os seis projetos.
 
 ## Pendências e riscos imediatos
 
-- Confirmar se .NET 10 SDK está instalado e compatível com os pacotes atuais.
-- Confirmar se Docker Desktop está iniciado e integrado ao WSL 2.
-- Confirmar se Kubernetes está habilitado e com nó `Ready`.
-- Confirmar as portas locais antes de criar o Compose.
+- Revisar a compatibilidade das versões dos pacotes NuGet quando eles forem adicionados.
+- Validar novamente as portas antes de iniciar o Docker Compose.
 - Verificar documentação oficial no momento de instalar versões, pois a apostila foi preparada em julho de 2026.
 
 ## Histórico resumido
@@ -103,6 +131,11 @@ Depois:
 | 2026-07-20 | `TODO.md` | Checklist integral criado |
 | 2026-07-20 | `handoff.md` | Registro de continuidade criado |
 | 2026-07-20 | `README.md` | Vitrine técnica criada sem declarar o MVP como implementado |
+| 2026-07-20 | Diagnóstico Docker/Kubernetes | Docker saudável; Kubernetes persistiu com `EOF`; reinicialização do Windows definida como próximo teste |
+| 2026-07-20 | Recuperação Docker/Kubernetes | Integração Ubuntu desabilitada; Docker Desktop 4.82.0 e Kubernetes 1.36.1 validados com nó `Ready` |
+| 2026-07-20 | `OrderFlow.slnx` | Solução .NET 10 criada e validada sem projetos |
+| 2026-07-20 | Diretórios-base | `src` e `tests` criados e validados |
+| 2026-07-20 | Projetos-base | Seis projetos `net10.0` gerados sem restore individual |
 
 ## Modelo para a próxima atualização
 

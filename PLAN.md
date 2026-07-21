@@ -117,14 +117,31 @@ Todos os comandos respondem corretamente, o Docker apresenta Client e Server e e
 
 #### Tarefas
 
-- [ ] Inicializar o repositório Git.
-- [ ] Criar `OrderFlow.sln`.
-- [ ] Criar os projetos Domain, Application, Infrastructure, API, Worker e Tests.
+- [x] Inicializar o repositório Git.
+- [x] Criar `OrderFlow.slnx`, formato padrão do .NET 10.
+- [x] Criar os projetos Domain, Application, Infrastructure, API, Worker e Tests.
 - [ ] Adicionar todos os projetos à solução.
 - [ ] Configurar referências respeitando os limites de cada camada.
 - [ ] Instalar EF Core/Npgsql, RabbitMQ.Client, Swagger e ferramentas de migrations.
 - [ ] Criar `.gitignore` e validar restore/build inicial.
 - [ ] Preparar diretórios `requests`, `k8s`, `docs` e `.github/workflows` quando forem necessários.
+
+#### Comandos executados
+
+```powershell
+dotnet new sln -n OrderFlow
+
+New-Item -ItemType Directory -Path .\src, .\tests
+
+dotnet new classlib -n OrderFlow.Domain -o .\src\OrderFlow.Domain --framework net10.0 --no-restore
+dotnet new classlib -n OrderFlow.Application -o .\src\OrderFlow.Application --framework net10.0 --no-restore
+dotnet new classlib -n OrderFlow.Infrastructure -o .\src\OrderFlow.Infrastructure --framework net10.0 --no-restore
+dotnet new webapi -n OrderFlow.Api -o .\src\OrderFlow.Api --use-controllers --framework net10.0 --no-restore
+dotnet new worker -n OrderFlow.Worker -o .\src\OrderFlow.Worker --framework net10.0 --no-restore
+dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10.0 --no-restore
+```
+
+O uso de `--framework net10.0` fixa explicitamente o target inicial. O uso de `--no-restore` evita restaurações repetidas; será feito um único restore depois que projetos e referências estiverem configurados.
 
 #### Validação
 

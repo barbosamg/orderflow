@@ -284,7 +284,7 @@ No MVP, o evento é publicado depois do commit do pedido. O Outbox Pattern será
 
 Uma conexão SignalR permanece vinculada a uma instância. O MVP usa uma réplica da API no Kubernetes. A escala horizontal exigirá Redis backplane e sticky sessions ou um serviço gerenciado.
 
-## Estrutura planejada
+## Estrutura da solução
 
 ```text
 OrderFlow/
@@ -301,9 +301,28 @@ OrderFlow/
 |-- docs/
 |-- .github/workflows/
 |-- docker-compose.yml
-|-- OrderFlow.sln
+|-- OrderFlow.slnx
 `-- README.md
 ```
+
+### Bootstrap executado
+
+A solução e os seis projetos-base foram gerados com o SDK .NET 10:
+
+```powershell
+dotnet new sln -n OrderFlow
+
+New-Item -ItemType Directory -Path .\src, .\tests
+
+dotnet new classlib -n OrderFlow.Domain -o .\src\OrderFlow.Domain --framework net10.0 --no-restore
+dotnet new classlib -n OrderFlow.Application -o .\src\OrderFlow.Application --framework net10.0 --no-restore
+dotnet new classlib -n OrderFlow.Infrastructure -o .\src\OrderFlow.Infrastructure --framework net10.0 --no-restore
+dotnet new webapi -n OrderFlow.Api -o .\src\OrderFlow.Api --use-controllers --framework net10.0 --no-restore
+dotnet new worker -n OrderFlow.Worker -o .\src\OrderFlow.Worker --framework net10.0 --no-restore
+dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10.0 --no-restore
+```
+
+Todos os projetos usam `net10.0`. O restore será executado uma única vez após a configuração das referências entre camadas.
 
 ## Qualidade e confiabilidade
 

@@ -17,7 +17,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [x] Planejamento consolidado em `PLAN.md`.
 - [x] Checklist operacional criado em `TODO.md`.
 - [x] Registro de continuidade criado em `handoff.md`.
-- [ ] Ambiente de desenvolvimento validado.
+- [x] Ambiente de desenvolvimento validado.
 - [ ] Solução .NET criada.
 - [ ] MVP funcional em Docker Compose.
 - [ ] Testes automatizados concluídos.
@@ -32,61 +32,61 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 ### 1.1 Validar Windows, PowerShell e WSL 2
 
 - [ ] Abrir o PowerShell como administrador quando o comando exigir elevação.
-- [ ] Executar `winver` e confirmar Windows 11 atualizado.
-- [ ] Executar `$PSVersionTable` e registrar a versão do PowerShell no `handoff.md`.
-- [ ] Executar `wsl --status`.
-- [ ] Executar `wsl --update`.
+- [x] Confirmar Windows 11 atualizado por `Get-ComputerInfo` ou `winver`.
+- [x] Executar `$PSVersionTable` e registrar a versão do PowerShell no `handoff.md`.
+- [x] Executar `wsl --status`.
+- [x] Executar `wsl --update`.
 - [ ] Se o WSL não estiver instalado, executar `wsl --install` e reiniciar o computador.
-- [ ] Confirmar que o WSL 2 está configurado como backend do Docker Desktop.
+- [x] Confirmar que o WSL 2 está configurado como backend do Docker Desktop.
 
 ### 1.2 Validar Git e .NET
 
-- [ ] Executar `git --version`.
-- [ ] Executar `dotnet --info`.
-- [ ] Executar `dotnet --list-sdks`.
-- [ ] Executar `dotnet --version`.
-- [ ] Confirmar que o SDK principal começa com `10.`.
+- [x] Executar `git --version`.
+- [x] Executar `dotnet --info`.
+- [x] Executar `dotnet --list-sdks`.
+- [x] Executar `dotnet --version`.
+- [x] Confirmar que o SDK principal começa com `10.`.
 - [ ] Se necessário, instalar uma versão .NET LTS compatível e ajustar imagens/pacotes do projeto.
-- [ ] Configurar nome e e-mail do Git se ainda não existirem.
-- [ ] Executar `git config --global user.name`.
-- [ ] Executar `git config --global user.email`.
+- [x] Configurar nome e e-mail do Git se ainda não existirem.
+- [x] Executar `git config --global user.name`.
+- [x] Executar `git config --global user.email`.
 
 ### 1.3 Validar Docker Desktop e Kubernetes
 
-- [ ] Abrir o Docker Desktop.
-- [ ] Confirmar o mecanismo baseado em WSL 2.
-- [ ] Executar `docker version`.
-- [ ] Confirmar que `docker version` mostra Client e Server.
-- [ ] Executar `docker compose version`.
-- [ ] Habilitar Kubernetes no Docker Desktop.
-- [ ] Executar `kubectl version --client`.
-- [ ] Executar `kubectl config current-context`.
-- [ ] Confirmar o contexto `docker-desktop` ou registrar o contexto adotado.
-- [ ] Executar `kubectl get nodes`.
-- [ ] Confirmar pelo menos um nó em estado `Ready`.
+- [x] Abrir o Docker Desktop.
+- [x] Confirmar o mecanismo baseado em WSL 2.
+- [x] Executar `docker version`.
+- [x] Confirmar que `docker version` mostra Client e Server.
+- [x] Executar `docker compose version`.
+- [x] Habilitar Kubernetes no Docker Desktop.
+- [x] Executar `kubectl version --client`.
+- [x] Executar `kubectl config current-context`.
+- [x] Confirmar o contexto `docker-desktop` ou registrar o contexto adotado.
+- [x] Executar `kubectl get nodes`.
+- [x] Confirmar pelo menos um nó em estado `Ready`.
 
 ### 1.4 Validar ferramentas auxiliares
 
-- [ ] Escolher VS Code ou Visual Studio como editor principal.
+- [x] Escolher VS Code ou Visual Studio como editor principal.
 - [ ] Instalar C# Dev Kit.
 - [ ] Instalar extensões Docker, Kubernetes, REST Client e YAML.
 - [ ] Instalar uma ferramenta opcional para PostgreSQL, como DBeaver ou pgAdmin.
-- [ ] Confirmar que o Poppler está acessível em um novo terminal com `pdfinfo -v`.
+- [ ] (Opcional, sem impacto no OrderFlow) Confirmar que o Poppler está acessível em um novo terminal com `pdfinfo -v`.
 
 ### 1.5 Verificar portas locais
 
-- [ ] Confirmar disponibilidade da porta PostgreSQL `5432`.
-- [ ] Confirmar disponibilidade da porta RabbitMQ AMQP `5672`.
-- [ ] Confirmar disponibilidade da porta API `8080`.
-- [ ] Confirmar disponibilidade da porta RabbitMQ Management `15672`.
+- [x] Confirmar disponibilidade da porta PostgreSQL `5432`.
+- [x] Confirmar disponibilidade da porta RabbitMQ AMQP `5672`.
+- [x] Confirmar disponibilidade da porta API `8080`.
+- [x] Confirmar disponibilidade da porta RabbitMQ Management `15672`.
 - [ ] Se houver conflito, documentar e definir portas externas alternativas.
 
 ### 1.6 Critério de saída da preparação
 
-- [ ] .NET, Git, Docker, Compose e kubectl respondem sem erro.
-- [ ] Docker Client e Server estão acessíveis.
-- [ ] Kubernetes possui nó `Ready`.
-- [ ] Versões verificadas foram registradas no `handoff.md`.
+- [x] .NET, Git, Docker, Compose e kubectl respondem sem erro.
+- [x] Docker Client e Server estão acessíveis.
+- [x] Kubernetes possui nó `Ready`.
+- [x] Versões verificadas foram registradas no `handoff.md`.
 
 ---
 
@@ -94,27 +94,27 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 2.1 Inicializar Git
 
-- [ ] Executar `git init` na raiz do projeto.
-- [ ] Confirmar a branch inicial com `git branch --show-current`.
-- [ ] Renomear para `main`, se necessário, com `git branch -M main`.
-- [ ] Criar `.gitignore` com `dotnet new gitignore`.
+- [x] Executar `git init` na raiz do projeto.
+- [x] Confirmar a branch inicial com `git branch --show-current`.
+- [x] Renomear para `main`, se necessário, com `git branch -M main`.
+- [x] Criar `.gitignore` com `dotnet new gitignore`.
 - [ ] Revisar o `.gitignore` para excluir `bin`, `obj`, `.vs`, cobertura, resultados de testes e segredos locais.
 
 ### 2.2 Criar solução e diretórios
 
-- [ ] Executar `dotnet new sln -n OrderFlow`.
-- [ ] Criar o diretório `src`.
-- [ ] Criar o diretório `tests`.
+- [x] Executar `dotnet new sln -n OrderFlow` e criar `OrderFlow.slnx`.
+- [x] Criar o diretório `src`.
+- [x] Criar o diretório `tests`.
 - [ ] Criar posteriormente `requests`, `k8s`, `docs` e `.github/workflows` quando suas fases começarem.
 
 ### 2.3 Criar projetos
 
-- [ ] Executar `dotnet new classlib -n OrderFlow.Domain -o src/OrderFlow.Domain`.
-- [ ] Executar `dotnet new classlib -n OrderFlow.Application -o src/OrderFlow.Application`.
-- [ ] Executar `dotnet new classlib -n OrderFlow.Infrastructure -o src/OrderFlow.Infrastructure`.
-- [ ] Executar `dotnet new webapi -n OrderFlow.Api -o src/OrderFlow.Api --use-controllers`.
-- [ ] Executar `dotnet new worker -n OrderFlow.Worker -o src/OrderFlow.Worker`.
-- [ ] Executar `dotnet new xunit -n OrderFlow.Tests -o tests/OrderFlow.Tests`.
+- [x] Executar `dotnet new classlib -n OrderFlow.Domain -o .\src\OrderFlow.Domain --framework net10.0 --no-restore`.
+- [x] Executar `dotnet new classlib -n OrderFlow.Application -o .\src\OrderFlow.Application --framework net10.0 --no-restore`.
+- [x] Executar `dotnet new classlib -n OrderFlow.Infrastructure -o .\src\OrderFlow.Infrastructure --framework net10.0 --no-restore`.
+- [x] Executar `dotnet new webapi -n OrderFlow.Api -o .\src\OrderFlow.Api --use-controllers --framework net10.0 --no-restore`.
+- [x] Executar `dotnet new worker -n OrderFlow.Worker -o .\src\OrderFlow.Worker --framework net10.0 --no-restore`.
+- [x] Executar `dotnet new xunit -n OrderFlow.Tests -o .\tests\OrderFlow.Tests --framework net10.0 --no-restore`.
 - [ ] Remover arquivos de exemplo que não serão utilizados.
 
 ### 2.4 Adicionar projetos à solução
