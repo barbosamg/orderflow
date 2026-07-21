@@ -162,19 +162,21 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 
 - `45ff89c` - `chore: estrutura solução inicial do OrderFlow em .NET 10`
 - `371152c` - `chore: configure project references and dependencies`
+- `b60410c` - `feat: adiciona status e regras de transição de pedidos`
+- `8e81c7a` - `feat: adiciona entidade de produto e controle de estoque`
 
 ### Fase 2 - Domínio e regras de negócio
 
 #### Tarefas
 
-- [ ] Criar `OrderStatus`: Created, Confirmed, Preparing, Shipped, Delivered e Cancelled.
-- [ ] Implementar `Product` com nome, descrição, preço, estoque, situação e data de criação.
-- [ ] Implementar validações de preço, estoque e quantidade.
-- [ ] Implementar exclusão lógica/ativação do produto por comportamento de domínio.
+- [x] Criar `OrderStatus`: Created, Confirmed, Preparing, Shipped, Delivered e Cancelled.
+- [x] Implementar `Product` com nome, descrição, preço, estoque, situação e data de criação.
+- [x] Implementar validações de preço, estoque e quantidade.
+- [x] Implementar exclusão lógica/ativação do produto por comportamento de domínio.
 - [ ] Implementar `Customer` com normalização de nome e e-mail.
 - [ ] Implementar `Order` e `OrderItem` com cálculo de total no domínio.
 - [ ] Impedir alterações em pedidos entregues ou cancelados.
-- [ ] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
+- [x] Definir e testar transições de status permitidas; não aceitar qualquer salto apenas porque o enum existe.
 - [ ] Implementar `ChatMessage` com limite de 1.000 caracteres.
 - [ ] Implementar `ProcessedEvent` para idempotência do Worker.
 
@@ -560,4 +562,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Iniciar a **Fase 2 - Domínio e regras de negócio** criando `OrderStatus` com `Created`, `Confirmed`, `Preparing`, `Shipped`, `Delivered` e `Cancelled`; em seguida, implementar e testar as transições permitidas e rejeitadas.
+Continuar a **Fase 2 - Domínio e regras de negócio** concluindo `Product` com alteração controlada de nome, descrição e preço, seguida dos respectivos testes unitários; depois, iniciar `Customer`.

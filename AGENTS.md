@@ -7,3 +7,4 @@
 - Se algum passo falhar, o usuário deve interromper o bloco e enviar o erro; o Codex deve diagnosticar a falha antes de orientar a continuação.
 - Depois que o usuário concluir um bloco, o Codex deve analisar os resultados antes de fornecer os próximos 5 passos ou mais.
 - Todas as mensagens sugeridas devem seguir Conventional Commits: o prefixo deve permanecer em inglês, como `feat`, `fix`, `docs`, `test`, `refactor` ou `chore`, e a descrição após o prefixo deve ser escrita em português do Brasil.
+- Nas classes C#, os membros devem seguir esta ordem: propriedades no início da classe, agrupadas por visibilidade na ordem `protected`, `private` e `public`; depois os construtores, primeiro o construtor sem parâmetros e em seguida os construtores com parâmetros; por último, os métodos.

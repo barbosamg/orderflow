@@ -331,6 +331,9 @@ Todos os projetos usam `net10.0`. As referências entre camadas foram configurad
 - `OrderFlow.Application` referencia apenas Domain;
 - API e Worker consomem Application e Infrastructure;
 - Infrastructure usa Npgsql/EF Core e RabbitMQ.Client;
+- o domínio já contém os seis status do pedido e uma política explícita para transições permitidas e rejeitadas;
+- `Product` protege nome, preço e estoque, normaliza seus dados e controla aumento, baixa, ativação e desativação;
+- 35 testes automatizados validam o fluxo de status e as regras implementadas de produto;
 - a API usa o OpenAPI nativo do ASP.NET Core, com `Microsoft.OpenApi` 2.7.5 fixado por segurança;
 - `dotnet restore` e `dotnet build` concluíram sem avisos;
 - o teste inicial do template foi aprovado;

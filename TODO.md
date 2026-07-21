@@ -169,25 +169,25 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 3.1 Status do pedido
 
-- [ ] Criar `src/OrderFlow.Domain/Orders/OrderStatus.cs`.
-- [ ] Adicionar Created, Confirmed, Preparing, Shipped, Delivered e Cancelled.
-- [ ] Definir transições válidas de status.
-- [ ] Rejeitar alteração após Delivered ou Cancelled.
-- [ ] Testar transições válidas e inválidas.
+- [x] Criar `src/OrderFlow.Domain/Orders/OrderStatus.cs`.
+- [x] Adicionar Created, Confirmed, Preparing, Shipped, Delivered e Cancelled.
+- [x] Definir transições válidas de status.
+- [x] Rejeitar alteração após Delivered ou Cancelled.
+- [x] Testar transições válidas e inválidas.
 
 ### 3.2 Produto
 
-- [ ] Criar `Product` com Id, Name, Description, Price, Stock, IsActive e CreatedAt.
-- [ ] Criar construtor protegido para EF Core.
-- [ ] Validar nome obrigatório.
-- [ ] Validar preço maior que zero.
-- [ ] Arredondar preço para duas casas decimais.
-- [ ] Validar estoque não negativo.
+- [x] Criar `Product` com Id, Name, Description, Price, Stock, IsActive e CreatedAt.
+- [x] Criar construtor protegido para EF Core.
+- [x] Validar nome obrigatório.
+- [x] Validar preço maior que zero.
+- [x] Arredondar preço para duas casas decimais.
+- [x] Validar estoque não negativo.
 - [ ] Implementar alteração de dados.
-- [ ] Implementar alteração de estoque.
-- [ ] Implementar baixa de estoque.
-- [ ] Rejeitar quantidade inválida ou superior ao estoque.
-- [ ] Implementar ativação e desativação lógica.
+- [x] Implementar alteração de estoque.
+- [x] Implementar baixa de estoque.
+- [x] Rejeitar quantidade inválida ou superior ao estoque.
+- [x] Implementar ativação e desativação lógica.
 
 ### 3.3 Cliente
 
