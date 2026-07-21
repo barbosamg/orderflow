@@ -677,22 +677,22 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 12.1 Estrutura do README
 
-- [ ] Criar `README.md`.
-- [ ] Explicar proposta e problema resolvido.
+- [x] Criar `README.md`.
+- [x] Explicar proposta e problema resolvido.
 - [ ] Adicionar demonstração visual no início.
-- [ ] Adicionar diagrama da arquitetura.
-- [ ] Explicar os fluxos HTTP, SignalR e RabbitMQ.
-- [ ] Listar tecnologias e versões.
-- [ ] Listar funcionalidades do MVP.
-- [ ] Documentar pré-requisitos.
+- [x] Adicionar diagrama da arquitetura.
+- [x] Explicar os fluxos HTTP, SignalR e RabbitMQ.
+- [x] Listar tecnologias e versões.
+- [x] Listar funcionalidades do MVP.
+- [x] Documentar pré-requisitos.
 - [ ] Documentar execução com Docker Compose.
 - [ ] Documentar URLs locais.
 - [ ] Documentar execução no Kubernetes.
-- [ ] Documentar testes.
-- [ ] Explicar idempotência, ack manual e limitação sem Outbox.
-- [ ] Explicar uma réplica da API SignalR no MVP.
+- [x] Documentar testes.
+- [x] Explicar idempotência, ack manual e limitação sem Outbox.
+- [x] Explicar uma réplica da API SignalR no MVP.
 - [ ] Adicionar seção de solução de problemas.
-- [ ] Adicionar próximos passos.
+- [x] Adicionar próximos passos.
 
 ### 12.2 Evidências visuais
 
@@ -799,4 +799,3 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [ ] README, diagrama, screenshots, vídeo e release estão publicados.
 - [ ] O `handoff.md` registra a conclusão e as evoluções pendentes.
 - [ ] É possível explicar por que cada componente existe, como falha e como observá-lo.
-

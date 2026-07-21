@@ -7,8 +7,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 | Campo | Valor |
 |---|---|
 | Data da última atualização | 2026-07-20 |
-| Fase atual | Planejamento concluído; preparação do ambiente ainda não iniciada |
-| Último item concluído | Criação do `TODO.md` e deste `handoff.md` |
+| Fase atual | Documentação-base concluída; preparação do ambiente ainda não iniciada |
+| Último item concluído | Reformulação do `README.md` como apresentação técnica do projeto |
 | Próximo item | `TODO.md` - seção 1.1, validar Windows, PowerShell e WSL 2 |
 | Bloqueios | Nenhum bloqueio conhecido |
 | Status do MVP | Não iniciado |
@@ -20,6 +20,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - O `TODO.md` foi criado com o checklist desde a preparação do ambiente até a release `v1.0.0` e o backlog pós-MVP.
 - Este arquivo foi criado para registrar continuamente o estado, evidências, decisões e próxima ação.
 - O Poppler 26.02.0 foi movido para `C:\Users\mateu\.local\poppler\26.02.0\Library\bin` e registrado no PATH do usuário.
+- O `README.md` foi reformulado como vitrine do projeto, priorizando core funcional, arquitetura, tecnologias, domínio, endpoints, decisões técnicas e diferenciais.
 
 ## Arquivos existentes na raiz
 
@@ -27,8 +28,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `PLAN.md` - planejamento, arquitetura, critérios de aceite, riscos e cronograma.
 - `TODO.md` - checklist operacional que deve ser marcado durante a implementação.
 - `handoff.md` - contexto de continuidade e estado mais recente.
+- `README.md` - apresentação pública e documentação principal do repositório.
+- `.gitignore` - regras locais de exclusão, ainda não adicionadas ao commit no momento desta atualização.
 
-Ainda não existem solução .NET, projetos em `src`, testes, repositório Git inicializado ou infraestrutura da aplicação.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git` e commit inicial `aa0865b`. Ainda não existem solução .NET, projetos em `src`, testes ou infraestrutura da aplicação.
 
 ## Decisões já tomadas
 
@@ -52,6 +55,7 @@ Ainda não existem solução .NET, projetos em `src`, testes, repositório Git i
 - Poppler 26.02.0 executou `pdfinfo`, `pdftotext` e `pdftoppm` corretamente.
 - `PLAN.md` criado e revisado estruturalmente.
 - `TODO.md` e `handoff.md` criados em 2026-07-20.
+- `README.md` criado e conferido contra o estado real do repositório em 2026-07-20.
 
 ## Próxima ação exata
 
@@ -98,6 +102,7 @@ Depois:
 | 2026-07-20 | Organização do Poppler | Movido para fora do projeto e adicionado ao PATH do usuário |
 | 2026-07-20 | `TODO.md` | Checklist integral criado |
 | 2026-07-20 | `handoff.md` | Registro de continuidade criado |
+| 2026-07-20 | `README.md` | Vitrine técnica criada sem declarar o MVP como implementado |
 
 ## Modelo para a próxima atualização
 
