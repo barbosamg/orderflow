@@ -164,6 +164,7 @@ Critério atendido em 2026-07-21: restore e build concluídos sem avisos, teste 
 - `371152c` - `chore: configure project references and dependencies`
 - `b60410c` - `feat: adiciona status e regras de transição de pedidos`
 - `8e81c7a` - `feat: adiciona entidade de produto e controle de estoque`
+- `b947a27` - `feat: adiciona atualização dos dados do produto`
 
 ### Fase 2 - Domínio e regras de negócio
 
@@ -562,4 +563,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Continuar a **Fase 2 - Domínio e regras de negócio** concluindo `Product` com alteração controlada de nome, descrição e preço, seguida dos respectivos testes unitários; depois, iniciar `Customer`.
+Continuar a **Fase 2 - Domínio e regras de negócio** implementando `Customer` com identidade, nome e e-mail normalizados, data de criação e validações unitárias; a unicidade do e-mail será garantida posteriormente no banco.

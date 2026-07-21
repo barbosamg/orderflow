@@ -183,7 +183,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 - [x] Validar preço maior que zero.
 - [x] Arredondar preço para duas casas decimais.
 - [x] Validar estoque não negativo.
-- [ ] Implementar alteração de dados.
+- [x] Implementar alteração de dados.
 - [x] Implementar alteração de estoque.
 - [x] Implementar baixa de estoque.
 - [x] Rejeitar quantidade inválida ou superior ao estoque.

@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-21 |
 | Fase atual | Fase 1 concluída; Fase 2 - Domínio e regras de negócio |
-| Último item concluído | Entidade de produto, controle de estoque e 18 testes específicos concluídos no commit `8e81c7a` |
-| Próximo item | Implementar alteração controlada de nome, descrição e preço em `Product` |
+| Último item concluído | Alteração controlada dos dados de produto concluída no commit `b947a27`, totalizando 26 testes de produto |
+| Próximo item | Criar `src/OrderFlow.Domain/Customers/Customer.cs` e implementar normalização e validações |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fundação concluída; status do pedido e primeira etapa de produto implementados no domínio |
+| Status do MVP | Fundação concluída; status do pedido e entidade de produto implementados no domínio |
 
 ## Último trabalho realizado
 
@@ -32,6 +32,8 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `Product` foi criado com identidade, dados normalizados, preço arredondado, estoque, situação e data de criação.
 - A própria entidade passou a controlar aumento e baixa de estoque, estoque insuficiente, ativação e desativação.
 - Foram aprovados 18 testes específicos de produto e 35 testes no total antes do commit `8e81c7a`.
+- `Product.UpdateDetails` passou a reutilizar as regras de normalização e validação para alterações de nome, descrição e preço.
+- Foram aprovados 26 testes específicos de produto e 43 testes no total antes do commit `b947a27`.
 
 ## Arquivos existentes na raiz
 
@@ -43,7 +45,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `8e81c7a feat: adiciona entidade de produto e controle de estoque`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `b947a27 feat: adiciona atualização dos dados do produto`. A solução contém os seis projetos-base, com referências e dependências configuradas, e a implementação do domínio está em andamento.
 
 ## Decisões já tomadas
 
@@ -120,14 +122,14 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, concluir o comportamento de alteração de dados do produto:
+Na próxima sessão, iniciar a entidade de cliente:
 
 ```powershell
-code .\src\OrderFlow.Domain\Products\Product.cs
-code .\tests\OrderFlow.Tests\Domain\Products\ProductTests.cs
+New-Item -ItemType Directory -Path .\src\OrderFlow.Domain\Customers
+New-Item -ItemType File -Path .\src\OrderFlow.Domain\Customers\Customer.cs
 ```
 
-Adicionar uma operação que altere nome, descrição e preço reutilizando as mesmas normalizações e validações aplicadas na criação, e cobrir os fluxos válidos e inválidos com testes unitários antes de iniciar `Customer`.
+Implementar identidade, nome, e-mail e data de criação, normalizar os espaços do nome e o e-mail para letras minúsculas, validar os dados e criar testes unitários. A unicidade do e-mail será protegida por índice no banco na fase de persistência.
 
 ## Pendências e riscos imediatos
 
@@ -156,6 +158,7 @@ Adicionar uma operação que altere nome, descrição e preço reutilizando as m
 | 2026-07-21 | Status do pedido | Enum, política de transições e 17 testes aprovados no commit `b60410c` |
 | 2026-07-21 | Regras de colaboração | Conventional Commits com prefixo em inglês e descrição em português registrados no commit `24c2133` |
 | 2026-07-21 | Produto e estoque | Entidade, invariantes, controle de estoque, ativação e desativação com 35 testes totais no commit `8e81c7a` |
+| 2026-07-21 | Atualização de produto | Alteração controlada de nome, descrição e preço com 43 testes totais no commit `b947a27` |
 
 ## Modelo para a próxima atualização
 
