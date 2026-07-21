@@ -6,4 +6,4 @@
 - Sempre que possível, cada passo deve incluir o comando ou conteúdo necessário e a validação esperada.
 - Se algum passo falhar, o usuário deve interromper o bloco e enviar o erro; o Codex deve diagnosticar a falha antes de orientar a continuação.
 - Depois que o usuário concluir um bloco, o Codex deve analisar os resultados antes de fornecer os próximos 5 passos ou mais.
-- Todas as mensagens de commit sugeridas pelo Codex devem ser escritas em português do Brasil.
+- Todas as mensagens sugeridas devem seguir Conventional Commits: o prefixo deve permanecer em inglês, como `feat`, `fix`, `docs`, `test`, `refactor` ou `chore`, e a descrição após o prefixo deve ser escrita em português do Brasil.
