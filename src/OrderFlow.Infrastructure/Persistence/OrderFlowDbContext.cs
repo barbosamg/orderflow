@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OrderFlow.Application.Common.Contracts;
 using OrderFlow.Domain.Chats;
 using OrderFlow.Domain.Customers;
 using OrderFlow.Domain.Events;
@@ -7,7 +8,9 @@ using OrderFlow.Domain.Products;
 
 namespace OrderFlow.Infrastructure.Persistence;
 
-public class OrderFlowDbContext : DbContext
+public class OrderFlowDbContext :
+    DbContext,
+    IUnitOfWork
 {
     public DbSet<Product> Products => Set<Product>();
 
