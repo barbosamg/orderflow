@@ -7,6 +7,8 @@ using OrderFlow.Application.Products.Repositories;
 using OrderFlow.Infrastructure.Customers.Repositories;
 using OrderFlow.Infrastructure.Persistence;
 using OrderFlow.Infrastructure.Products.Repositories;
+using OrderFlow.Application.Orders.Repositories;
+using OrderFlow.Infrastructure.Orders.Repositories;
 
 namespace OrderFlow.Infrastructure;
 
@@ -26,6 +28,7 @@ public static class DependencyInjection
 
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
 
         services.AddScoped<IUnitOfWork>(
             serviceProvider =>

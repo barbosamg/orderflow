@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 using OrderFlow.Application.Common.Contracts;
 using OrderFlow.Domain.Chats;
@@ -28,6 +29,33 @@ public class OrderFlowDbContext :
         DbContextOptions<OrderFlowDbContext> options)
         : base(options)
     {
+    }
+
+    public async Task<TResult> ExecuteInTransactionAsync<TResult>(
+        Func<CancellationToken, Task<TResult>> operation,
+        CancellationToken cancellationToken)
+    {
+        ArgumentNullException.ThrowIfNull(operation);
+
+        await using var transaction =
+            await Database.BeginTransactionAsync(
+                IsolationLevel.Serializable,
+                cancellationToken);
+
+        try
+        {
+            var result = await operation(cancellationToken);
+
+            await transaction.CommitAsync(cancellationToken);
+
+            return result;
+        }
+        catch
+        {
+            await transaction.RollbackAsync(CancellationToken.None);
+
+            throw;
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

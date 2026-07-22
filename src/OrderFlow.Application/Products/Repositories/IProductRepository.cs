@@ -11,6 +11,10 @@ public interface IProductRepository
         Guid id,
         CancellationToken cancellationToken);
 
+    Task<IReadOnlyCollection<Product>> GetByIdsAsync(
+        IReadOnlyCollection<Guid> ids,
+        CancellationToken cancellationToken);
+
     Task AddAsync(
         Product product,
         CancellationToken cancellationToken);

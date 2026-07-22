@@ -34,6 +34,20 @@ public sealed class ProductRepository : IProductRepository
                 cancellationToken);
     }
 
+    public async Task<IReadOnlyCollection<Product>> GetByIdsAsync(
+        IReadOnlyCollection<Guid> ids,
+        CancellationToken cancellationToken)
+    {
+        if (ids.Count == 0)
+        {
+            return [];
+        }
+
+        return await _dbContext.Products
+            .Where(product => ids.Contains(product.Id))
+            .ToArrayAsync(cancellationToken);
+    }
+
     public async Task AddAsync(
         Product product,
         CancellationToken cancellationToken)
