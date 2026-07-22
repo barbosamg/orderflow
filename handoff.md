@@ -60,6 +60,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `ProductService` passou a concentrar listagem, consulta, criação, atualização cadastral e desativação lógica de produtos por meio de contratos da camada Application no commit `9f795ee`.
 - `ProductRepository` implementa o acesso EF Core, enquanto `OrderFlowDbContext` também cumpre `IUnitOfWork` e compartilha a mesma instância scoped entre repositório e caso de uso.
 - Em 2026-07-22, `dotnet build .\OrderFlow.slnx --no-restore` terminou com 0 erros e 0 warnings; `dotnet test .\OrderFlow.slnx --no-build --no-restore` manteve os 89 testes aprovados.
+- Os 20 arquivos C# incluídos no bloco foram conferidos como UTF-8 sem BOM.
 
 ## Arquivos existentes na raiz
 

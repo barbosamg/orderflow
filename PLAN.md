@@ -575,4 +575,4 @@ O projeto estará concluído quando:
 
 ## 12. Próxima ação
 
-Iniciar a **Fase 4 - API REST e casos de uso** definindo os nomes e criando os DTOs de entrada e saída para produtos, clientes, pedidos, alteração de status e mensagens do chat, sem expor entidades diretamente.
+Continuar a **Fase 4 - API REST e casos de uso** implementando o `ProductsController`, registrando o `ProductService` na API e expondo o CRUD HTTP com desativação lógica no `DELETE`.
