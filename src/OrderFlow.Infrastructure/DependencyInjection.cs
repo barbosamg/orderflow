@@ -2,7 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderFlow.Application.Common.Contracts;
+using OrderFlow.Application.Customers.Repositories;
 using OrderFlow.Application.Products.Repositories;
+using OrderFlow.Infrastructure.Customers.Repositories;
 using OrderFlow.Infrastructure.Persistence;
 using OrderFlow.Infrastructure.Products.Repositories;
 
@@ -23,6 +25,7 @@ public static class DependencyInjection
             options => options.UseNpgsql(connectionString));
 
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
 
         services.AddScoped<IUnitOfWork>(
             serviceProvider =>
