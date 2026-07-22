@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-22 |
 | Fase atual | Fase 4 - API REST e casos de uso |
-| Último item concluído | DTOs, contratos e base de produtos concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
-| Próximo item | Implementar e registrar `ProductsController` com os cinco endpoints previstos |
+| Último item concluído | Endpoints REST de produtos e clientes concluídos nos commits `a319ebf` e `ca64e21`, com build limpo e 89 testes aprovados |
+| Próximo item | Criar `OrderService` e preparar a criação transacional de pedidos |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1, 2 e 3 concluídas; DTOs e base do caso de uso de produtos implementados na Fase 4 |
+| Status do MVP | Fases 1, 2 e 3 concluídas; contratos e endpoints REST de produtos e clientes implementados na Fase 4 |
 
 ## Último trabalho realizado
 
@@ -61,6 +61,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `ProductRepository` implementa o acesso EF Core, enquanto `OrderFlowDbContext` também cumpre `IUnitOfWork` e compartilha a mesma instância scoped entre repositório e caso de uso.
 - Em 2026-07-22, `dotnet build .\OrderFlow.slnx --no-restore` terminou com 0 erros e 0 warnings; `dotnet test .\OrderFlow.slnx --no-build --no-restore` manteve os 89 testes aprovados.
 - Os 20 arquivos C# incluídos no bloco foram conferidos como UTF-8 sem BOM.
+- `CustomerService` passou a tratar criação, listagem, consulta e conflito de e-mail duplicado; o repositório EF Core foi concluído no commit `a319ebf`.
+- `ProductsController` e `CustomersController` foram adicionados com respostas 200, 201, 204, 404 e 409 conforme o caso; o exemplo WeatherForecast foi removido no commit `ca64e21`.
+- Os serviços de produtos e clientes foram registrados com ciclo de vida scoped, compartilhando o contexto registrado pela Infrastructure durante cada requisição.
 
 ## Arquivos existentes na raiz
 
@@ -149,7 +152,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Implementar integralmente `ProductsController`, registrar `IProductService` com `ProductService` na inicialização da API e remover os arquivos restantes do exemplo WeatherForecast quando o fluxo de produtos estiver pronto para substituí-los.
+Iniciar a criação transacional de pedidos definindo os contratos de persistência necessários para `OrderService`, com validação de cliente, produtos ativos, itens repetidos, quantidade e estoque antes do commit da transação.
 
 ## Pendências e riscos imediatos
 
@@ -189,6 +192,7 @@ Implementar integralmente `ProductsController`, registrar `IProductService` com 
 | 2026-07-21 | Injeção de dependência | API e Worker registram Npgsql com a chave `Postgres`; build limpo e 89 testes aprovados no commit `bb0a416` |
 | 2026-07-21 | Migration inicial | Schema PostgreSQL validado, `EventId` duplicado rejeitado e 89 testes aprovados no commit `a7c3bf5` |
 | 2026-07-22 | DTOs e base de produtos | Contratos REST e persistência concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
+| 2026-07-22 | REST de produtos e clientes | Casos de uso, repositórios e controllers concluídos nos commits `a319ebf` e `ca64e21`, com build limpo e 89 testes aprovados |
 
 ## Modelo para a próxima atualização
 

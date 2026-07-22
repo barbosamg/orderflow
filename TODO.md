@@ -312,21 +312,21 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 5.2 ProdutosController
 
-- [ ] Implementar `GET /api/products`.
-- [ ] Implementar `GET /api/products/{id}`.
-- [ ] Implementar `POST /api/products`.
-- [ ] Implementar `PUT /api/products/{id}`.
-- [ ] Implementar `DELETE /api/products/{id}` como desativação lógica.
-- [ ] Usar `AsNoTracking` nas consultas somente leitura.
-- [ ] Retornar 404 para produto inexistente.
-- [ ] Retornar 201 e localização na criação.
+- [x] Implementar `GET /api/products`.
+- [x] Implementar `GET /api/products/{id}`.
+- [x] Implementar `POST /api/products`.
+- [x] Implementar `PUT /api/products/{id}`.
+- [x] Implementar `DELETE /api/products/{id}` como desativação lógica.
+- [x] Usar `AsNoTracking` nas consultas somente leitura.
+- [x] Retornar 404 para produto inexistente.
+- [x] Retornar 201 e localização na criação.
 
 ### 5.3 CustomersController
 
-- [ ] Implementar `GET /api/customers`.
-- [ ] Implementar `GET /api/customers/{id}` se necessário.
-- [ ] Implementar `POST /api/customers`.
-- [ ] Tratar conflito de e-mail duplicado.
+- [x] Implementar `GET /api/customers`.
+- [x] Implementar `GET /api/customers/{id}` se necessário.
+- [x] Implementar `POST /api/customers`.
+- [x] Tratar conflito de e-mail duplicado.
 
 ### 5.4 Criação de pedido
 

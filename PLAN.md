@@ -248,9 +248,9 @@ Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi
 #### Tarefas
 
 - [x] Criar DTOs de entrada e saída sem expor entidades diretamente.
-- [ ] Implementar CRUD de produtos, incluindo `PUT` e desativação lógica no `DELETE`.
-- [ ] Implementar criação e listagem de clientes.
-- [ ] Implementar consulta de cliente por ID se necessária para a interface.
+- [x] Implementar CRUD de produtos, incluindo `PUT` e desativação lógica no `DELETE`.
+- [x] Implementar criação e listagem de clientes.
+- [x] Implementar consulta de cliente por ID se necessária para a interface.
 - [ ] Implementar `OrderService` para criação transacional do pedido.
 - [ ] Validar cliente, produtos ativos, quantidade e estoque antes do commit.
 - [ ] Consolidar itens repetidos ou rejeitá-los explicitamente para evitar baixa incorreta de estoque.
