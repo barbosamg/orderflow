@@ -251,9 +251,9 @@ Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi
 - [x] Implementar CRUD de produtos, incluindo `PUT` e desativação lógica no `DELETE`.
 - [x] Implementar criação e listagem de clientes.
 - [x] Implementar consulta de cliente por ID se necessária para a interface.
-- [ ] Implementar `OrderService` para criação transacional do pedido.
-- [ ] Validar cliente, produtos ativos, quantidade e estoque antes do commit.
-- [ ] Consolidar itens repetidos ou rejeitá-los explicitamente para evitar baixa incorreta de estoque.
+- [x] Implementar `OrderService` para criação transacional do pedido.
+- [x] Validar cliente, produtos ativos, quantidade e estoque antes do commit.
+- [x] Consolidar itens repetidos ou rejeitá-los explicitamente para evitar baixa incorreta de estoque.
 - [ ] Implementar criação, detalhamento e alteração de status do pedido.
 - [ ] Implementar histórico de mensagens por HTTP.
 - [ ] Configurar Controllers, OpenAPI nativo, arquivos estáticos e health check.
@@ -289,19 +289,19 @@ O fluxo produto -> cliente -> pedido pode ser executado pelo arquivo `.http`, co
 
 #### Tarefas
 
-- [ ] Criar o contrato `OrderCreatedEvent` com `EventId`, `OrderId`, `CustomerId`, total e data.
-- [ ] Criar `IEventPublisher` e `RabbitMqOptions`.
-- [ ] Implementar conexão e canal duradouros no publicador.
-- [ ] Declarar exchange topic `orderflow.events`.
-- [ ] Publicar eventos persistentes com routing key `order.created`.
-- [ ] Proteger uso concorrente do canal do publicador.
-- [ ] Registrar publicador como singleton e descartá-lo corretamente.
+- [x] Criar o contrato `OrderCreatedEvent` com `EventId`, `OrderId`, `CustomerId`, total e data.
+- [x] Criar `IOrderCreatedPublisher` e `RabbitMqOptions`.
+- [x] Implementar conexão e canal duradouros no publicador.
+- [x] Declarar exchange topic `orderflow.events`.
+- [x] Publicar eventos persistentes com routing key `order.created`.
+- [x] Proteger uso concorrente do canal do publicador.
+- [x] Registrar publicador como singleton e descartá-lo corretamente.
 - [ ] Implementar Worker com exchange, fila durable e binding.
 - [ ] Configurar `BasicQos` e ack manual.
 - [ ] Registrar `ProcessedEvent` antes do ack.
 - [ ] Confirmar evento repetido sem repetir o efeito.
 - [ ] Tratar falha com nack sem requeue infinito.
-- [ ] Documentar a limitação do MVP: commit no banco e publicação não são atômicos.
+- [x] Documentar a limitação do MVP: commit no banco e publicação não são atômicos.
 
 #### Critério de saída
 

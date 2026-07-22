@@ -332,19 +332,19 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 - [x] Criar contratos de serviço, repositório e publicação do evento de pedido.
 - [x] Preparar repositórios rastreados e unidade de trabalho com transação serializável.
-- [ ] Criar `OrderService`.
-- [ ] Rejeitar pedido sem itens.
-- [ ] Confirmar existência do cliente.
-- [ ] Buscar apenas produtos ativos.
-- [ ] Validar todos os produtos solicitados.
-- [ ] Tratar itens repetidos de forma explícita.
-- [ ] Abrir transação no banco.
-- [ ] Baixar estoque.
-- [ ] Montar pedido e itens.
-- [ ] Salvar alterações.
-- [ ] Confirmar a transação.
-- [ ] Publicar `order.created` após o commit no MVP.
-- [ ] Registrar em comentário/documentação a evolução futura para Outbox.
+- [x] Criar `OrderService`.
+- [x] Rejeitar pedido sem itens.
+- [x] Confirmar existência do cliente.
+- [x] Buscar os produtos solicitados e rejeitar produtos inativos.
+- [x] Validar todos os produtos solicitados.
+- [x] Tratar itens repetidos de forma explícita.
+- [x] Abrir transação no banco.
+- [x] Baixar estoque.
+- [x] Montar pedido e itens.
+- [x] Salvar alterações.
+- [x] Confirmar a transação.
+- [x] Publicar `order.created` após o commit no MVP.
+- [x] Registrar em comentário/documentação a evolução futura para Outbox.
 
 ### 5.5 OrdersController
 
@@ -356,14 +356,14 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 5.6 Inicialização da API
 
-- [ ] Registrar Controllers.
+- [x] Registrar Controllers.
 - [ ] Validar e manter o OpenAPI nativo do ASP.NET Core.
 - [ ] Registrar SignalR.
-- [ ] Registrar Infrastructure.
-- [ ] Registrar OrderService.
+- [x] Registrar Infrastructure.
+- [x] Registrar OrderService.
 - [ ] Registrar health checks.
 - [ ] Servir arquivos estáticos.
-- [ ] Mapear Controllers.
+- [x] Mapear Controllers.
 - [ ] Mapear `/health`.
 - [ ] Mapear posteriormente `/hubs/orders`.
 
@@ -388,23 +388,23 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 6.1 Contratos e opções
 
-- [ ] Criar `OrderCreatedEvent`.
-- [ ] Criar `IEventPublisher`.
-- [ ] Criar `RabbitMqOptions`.
-- [ ] Configurar Host, Port, User, Password, Exchange e Queue.
+- [x] Criar `OrderCreatedEvent`.
+- [x] Criar `IOrderCreatedPublisher`.
+- [x] Criar `RabbitMqOptions`.
+- [x] Configurar Host, Port, User, Password, Exchange e Queue.
 
 ### 6.2 Publicador
 
-- [ ] Criar `RabbitMqPublisher`.
-- [ ] Manter conexão e canal de longa duração.
-- [ ] Habilitar recuperação automática.
-- [ ] Declarar exchange topic durable.
-- [ ] Serializar mensagens em JSON UTF-8.
-- [ ] Definir ContentType `application/json`.
-- [ ] Marcar mensagens como persistentes.
-- [ ] Proteger publicação concorrente no mesmo canal.
-- [ ] Implementar descarte assíncrono.
-- [ ] Registrar o publicador como singleton.
+- [x] Criar `RabbitMqOrderCreatedPublisher`.
+- [x] Manter conexão e canal de longa duração.
+- [x] Habilitar recuperação automática.
+- [x] Declarar exchange topic durable.
+- [x] Serializar mensagens em JSON UTF-8.
+- [x] Definir ContentType `application/json`.
+- [x] Marcar mensagens como persistentes.
+- [x] Proteger publicação concorrente no mesmo canal.
+- [x] Implementar descarte assíncrono.
+- [x] Registrar o publicador como singleton.
 
 ### 6.3 Worker consumidor
 

@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-22 |
 | Fase atual | Fase 4 - API REST e casos de uso |
-| Último item concluído | Contratos e persistência transacional de pedidos concluídos nos commits `4506838` e `3a09324` |
-| Próximo item | Implementar integralmente o mapeamento e o `OrderService` |
+| Último item concluído | `OrderService` e publisher RabbitMQ concluídos nos commits `19fcfc0` e `e3f3c26`, com build limpo e 89 testes aprovados |
+| Próximo item | Implementar `OrdersController` e depois a fila, o binding e o consumidor no Worker |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1, 2 e 3 concluídas; REST de produtos e clientes pronto e fundação transacional de pedidos implementada na Fase 4 |
+| Status do MVP | Fases 1, 2 e 3 concluídas; criação transacional de pedidos e publicação RabbitMQ implementadas, ainda sem controller e consumidor |
 
 ## Último trabalho realizado
 
@@ -67,6 +67,11 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - Os contratos do fluxo de pedidos, as exceções de aplicação, `OrderCreatedEvent` e `IOrderCreatedPublisher` foram adicionados no commit `4506838`.
 - `OrderRepository`, consulta em lote rastreada de produtos e transação PostgreSQL com isolamento serializável foram concluídos no commit `3a09324`.
 - O usuário informou que build, testes existentes e verificação de whitespace permaneceram aprovados antes desses commits.
+- `OrderService` passou a validar o pedido integralmente, baixar estoque e salvar pedido e produtos na mesma transação antes de publicar `order.created`, no commit `19fcfc0`.
+- `RabbitMqOrderCreatedPublisher` foi implementado no commit `e3f3c26` com exchange topic durável, JSON UTF-8, mensagem persistente, `mandatory`, publisher confirms, recuperação automática e exclusão mútua no canal.
+- A configuração RabbitMQ foi separada em `RabbitMqOptions`; conexão e canal são duradouros, o publisher é singleton e possui descarte assíncrono.
+- O guia `docs/rabbitmq-guia-de-estudo.md` documenta exchanges, tipos de fila, bindings, durabilidade, confirms, ack/nack, prefetch, DLQ, idempotência, observabilidade e Outbox.
+- Antes dos commits `19fcfc0` e `e3f3c26`, o build terminou sem erros ou avisos, os 89 testes existentes foram aprovados e `git diff --check` não encontrou problemas.
 
 ## Arquivos existentes na raiz
 
@@ -155,7 +160,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Criar o mapeamento de pedidos e implementar integralmente `OrderService`, validando cliente, produtos ativos, itens repetidos, quantidade e estoque, persistindo pedido e baixa de estoque na mesma transação e publicando `order.created` somente depois do commit.
+Implementar `OrdersController` com criação, consulta e alteração de status. Em seguida, declarar a fila, o binding e o consumidor no Worker para permitir a validação funcional de `order.created` com ack manual e idempotência.
 
 ## Pendências e riscos imediatos
 
@@ -197,6 +202,7 @@ Criar o mapeamento de pedidos e implementar integralmente `OrderService`, valida
 | 2026-07-22 | DTOs e base de produtos | Contratos REST e persistência concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
 | 2026-07-22 | REST de produtos e clientes | Casos de uso, repositórios e controllers concluídos nos commits `a319ebf` e `ca64e21`, com build limpo e 89 testes aprovados |
 | 2026-07-22 | Fundação transacional de pedidos | Contratos, evento, repositórios rastreados e unidade de trabalho serializável concluídos nos commits `4506838` e `3a09324` |
+| 2026-07-22 | Serviço e publisher de pedidos | `OrderService` e publisher RabbitMQ concluídos nos commits `19fcfc0` e `e3f3c26`, com build limpo e 89 testes aprovados |
 
 ## Modelo para a próxima atualização
 
