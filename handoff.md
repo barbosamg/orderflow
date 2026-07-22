@@ -6,12 +6,12 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 
 | Campo | Valor |
 |---|---|
-| Data da última atualização | 2026-07-21 |
+| Data da última atualização | 2026-07-22 |
 | Fase atual | Fase 4 - API REST e casos de uso |
-| Último item concluído | Migration `20260721233127_InitialCreate` aplicada e validada no commit `a7c3bf5`, com build limpo e 89 testes aprovados |
-| Próximo item | Definir e criar os DTOs de entrada e saída da API REST |
+| Último item concluído | DTOs, contratos e base de produtos concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
+| Próximo item | Implementar e registrar `ProductsController` com os cinco endpoints previstos |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1, 2 e 3 concluídas; início da API REST e dos casos de uso na Fase 4 |
+| Status do MVP | Fases 1, 2 e 3 concluídas; DTOs e base do caso de uso de produtos implementados na Fase 4 |
 
 ## Último trabalho realizado
 
@@ -56,6 +56,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - A chave primária de `processed_events.event_id` rejeitou a segunda inserção do mesmo identificador; o registro de teste foi removido em seguida.
 - Um PostgreSQL nativo do Windows ocupa a porta 5432, portanto o container `orderflow-postgres-dev` publica temporariamente a porta 5433.
 - O build permaneceu sem erros ou warnings e os 89 testes foram aprovados antes do commit `a7c3bf5`.
+- Foram criados DTOs de entrada e saída para produtos e clientes no commit `15c09b8` e para pedidos, alteração de status e mensagens do chat no commit `d32efcf`, sem expor entidades de persistência na API.
+- `ProductService` passou a concentrar listagem, consulta, criação, atualização cadastral e desativação lógica de produtos por meio de contratos da camada Application no commit `9f795ee`.
+- `ProductRepository` implementa o acesso EF Core, enquanto `OrderFlowDbContext` também cumpre `IUnitOfWork` e compartilha a mesma instância scoped entre repositório e caso de uso.
+- Em 2026-07-22, `dotnet build .\OrderFlow.slnx --no-restore` terminou com 0 erros e 0 warnings; `dotnet test .\OrderFlow.slnx --no-build --no-restore` manteve os 89 testes aprovados.
 
 ## Arquivos existentes na raiz
 
@@ -144,7 +148,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Na próxima sessão, iniciar a Fase 4 consultando a documentação e o código real para definir os nomes dos DTOs de criação, atualização e resposta de produtos antes de criar os arquivos.
+Implementar integralmente `ProductsController`, registrar `IProductService` com `ProductService` na inicialização da API e remover os arquivos restantes do exemplo WeatherForecast quando o fluxo de produtos estiver pronto para substituí-los.
 
 ## Pendências e riscos imediatos
 
@@ -183,6 +187,7 @@ Na próxima sessão, iniciar a Fase 4 consultando a documentação e o código r
 | 2026-07-21 | Mapeamentos EF Core | Contexto, seis configurações, relacionamentos e índices concluídos em commits modulares informados pelo usuário |
 | 2026-07-21 | Injeção de dependência | API e Worker registram Npgsql com a chave `Postgres`; build limpo e 89 testes aprovados no commit `bb0a416` |
 | 2026-07-21 | Migration inicial | Schema PostgreSQL validado, `EventId` duplicado rejeitado e 89 testes aprovados no commit `a7c3bf5` |
+| 2026-07-22 | DTOs e base de produtos | Contratos REST e persistência concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
 
 ## Modelo para a próxima atualização
 

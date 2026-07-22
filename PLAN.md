@@ -247,7 +247,7 @@ Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi
 
 #### Tarefas
 
-- [ ] Criar DTOs de entrada e saída sem expor entidades diretamente.
+- [x] Criar DTOs de entrada e saída sem expor entidades diretamente.
 - [ ] Implementar CRUD de produtos, incluindo `PUT` e desativação lógica no `DELETE`.
 - [ ] Implementar criação e listagem de clientes.
 - [ ] Implementar consulta de cliente por ID se necessária para a interface.

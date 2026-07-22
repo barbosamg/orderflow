@@ -302,13 +302,13 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 5.1 DTOs e contratos
 
-- [ ] Criar DTOs de criação e resposta de produto.
-- [ ] Criar DTOs de atualização de produto.
-- [ ] Criar DTOs de criação e resposta de cliente.
-- [ ] Criar DTOs de criação e detalhamento de pedido.
-- [ ] Criar DTO de alteração de status.
-- [ ] Criar DTO de mensagem do chat.
-- [ ] Não retornar entidades EF diretamente.
+- [x] Criar DTOs de criação e resposta de produto.
+- [x] Criar DTOs de atualização de produto.
+- [x] Criar DTOs de criação e resposta de cliente.
+- [x] Criar DTOs de criação e detalhamento de pedido.
+- [x] Criar DTO de alteração de status.
+- [x] Criar DTO de mensagem do chat.
+- [x] Não retornar entidades EF diretamente.
 
 ### 5.2 ProdutosController
 
