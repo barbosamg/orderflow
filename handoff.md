@@ -8,10 +8,10 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 |---|---|
 | Data da última atualização | 2026-07-22 |
 | Fase atual | Fase 4 - API REST e casos de uso |
-| Último item concluído | Endpoints REST de produtos e clientes concluídos nos commits `a319ebf` e `ca64e21`, com build limpo e 89 testes aprovados |
-| Próximo item | Criar `OrderService` e preparar a criação transacional de pedidos |
+| Último item concluído | Contratos e persistência transacional de pedidos concluídos nos commits `4506838` e `3a09324` |
+| Próximo item | Implementar integralmente o mapeamento e o `OrderService` |
 | Bloqueios | Nenhum bloqueio conhecido; Poppler é opcional e não participa da aplicação |
-| Status do MVP | Fases 1, 2 e 3 concluídas; contratos e endpoints REST de produtos e clientes implementados na Fase 4 |
+| Status do MVP | Fases 1, 2 e 3 concluídas; REST de produtos e clientes pronto e fundação transacional de pedidos implementada na Fase 4 |
 
 ## Último trabalho realizado
 
@@ -64,6 +64,9 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `CustomerService` passou a tratar criação, listagem, consulta e conflito de e-mail duplicado; o repositório EF Core foi concluído no commit `a319ebf`.
 - `ProductsController` e `CustomersController` foram adicionados com respostas 200, 201, 204, 404 e 409 conforme o caso; o exemplo WeatherForecast foi removido no commit `ca64e21`.
 - Os serviços de produtos e clientes foram registrados com ciclo de vida scoped, compartilhando o contexto registrado pela Infrastructure durante cada requisição.
+- Os contratos do fluxo de pedidos, as exceções de aplicação, `OrderCreatedEvent` e `IOrderCreatedPublisher` foram adicionados no commit `4506838`.
+- `OrderRepository`, consulta em lote rastreada de produtos e transação PostgreSQL com isolamento serializável foram concluídos no commit `3a09324`.
+- O usuário informou que build, testes existentes e verificação de whitespace permaneceram aprovados antes desses commits.
 
 ## Arquivos existentes na raiz
 
@@ -152,7 +155,7 @@ O repositório Git está inicializado na branch `main`, com remoto `https://gith
 
 ## Próxima ação exata
 
-Iniciar a criação transacional de pedidos definindo os contratos de persistência necessários para `OrderService`, com validação de cliente, produtos ativos, itens repetidos, quantidade e estoque antes do commit da transação.
+Criar o mapeamento de pedidos e implementar integralmente `OrderService`, validando cliente, produtos ativos, itens repetidos, quantidade e estoque, persistindo pedido e baixa de estoque na mesma transação e publicando `order.created` somente depois do commit.
 
 ## Pendências e riscos imediatos
 
@@ -193,6 +196,7 @@ Iniciar a criação transacional de pedidos definindo os contratos de persistên
 | 2026-07-21 | Migration inicial | Schema PostgreSQL validado, `EventId` duplicado rejeitado e 89 testes aprovados no commit `a7c3bf5` |
 | 2026-07-22 | DTOs e base de produtos | Contratos REST e persistência concluídos nos commits `15c09b8`, `d32efcf` e `9f795ee`, com build limpo e 89 testes aprovados |
 | 2026-07-22 | REST de produtos e clientes | Casos de uso, repositórios e controllers concluídos nos commits `a319ebf` e `ca64e21`, com build limpo e 89 testes aprovados |
+| 2026-07-22 | Fundação transacional de pedidos | Contratos, evento, repositórios rastreados e unidade de trabalho serializável concluídos nos commits `4506838` e `3a09324` |
 
 ## Modelo para a próxima atualização
 

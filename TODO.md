@@ -330,6 +330,8 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 5.4 Criação de pedido
 
+- [x] Criar contratos de serviço, repositório e publicação do evento de pedido.
+- [x] Preparar repositórios rastreados e unidade de trabalho com transação serializável.
 - [ ] Criar `OrderService`.
 - [ ] Rejeitar pedido sem itens.
 - [ ] Confirmar existência do cliente.

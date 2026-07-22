@@ -259,6 +259,8 @@ Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi
 - [ ] Configurar Controllers, OpenAPI nativo, arquivos estáticos e health check.
 - [ ] Criar coleção `.http` com o fluxo completo e dados encadeados.
 
+Progresso parcial em 2026-07-22: os contratos do fluxo de pedidos, o evento `OrderCreatedEvent`, a abstração do publisher, o repositório de pedidos, a consulta rastreada de produtos e a unidade de trabalho com transação serializável foram concluídos nos commits `4506838` e `3a09324`. O `OrderService` ainda precisa orquestrar essas peças antes que os itens de criação, estoque e publicação possam ser considerados concluídos.
+
 #### Endpoints previstos
 
 | Método | Rota | Resultado esperado |
