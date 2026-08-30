@@ -1,6 +1,68 @@
-@OrderFlow.Api_HostAddress = http://localhost:5157
+@OrderFlow_Api_HostAddress = http://localhost:5157
+@productId = 00000000-0000-0000-0000-000000000000
+@customerId = 00000000-0000-0000-0000-000000000000
+@orderId = 00000000-0000-0000-0000-000000000000
 
-GET {{OrderFlow.Api_HostAddress}}/weatherforecast/
+# Substitua os identificadores acima pelos valores retornados nas criações.
+
+### Listar produtos
+GET {{OrderFlow_Api_HostAddress}}/api/products
 Accept: application/json
 
-###
+### Criar produto
+POST {{OrderFlow_Api_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Teclado mecânico",
+  "description": "Produto de teste do fluxo HTTP",
+  "price": 299.90,
+  "stock": 10
+}
+
+### Consultar produto por ID
+GET {{OrderFlow_Api_HostAddress}}/api/products/{{productId}}
+Accept: application/json
+
+### Listar clientes
+GET {{OrderFlow_Api_HostAddress}}/api/customers
+Accept: application/json
+
+### Criar cliente
+POST {{OrderFlow_Api_HostAddress}}/api/customers
+Content-Type: application/json
+
+{
+  "name": "Cliente OrderFlow",
+  "email": "cliente.orderflow@example.com"
+}
+
+# As requisições de pedido estarão disponíveis após a implementação do OrdersController.
+
+### Criar pedido
+POST {{OrderFlow_Api_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "items": [
+    {
+      "productId": "{{productId}}",
+      "quantity": 2
+    }
+  ]
+}
+
+### Consultar pedido por ID
+GET {{OrderFlow_Api_HostAddress}}/api/orders/{{orderId}}
+Accept: application/json
+
+# OrderStatus: 0 Created, 1 Confirmed, 2 Preparing, 3 Shipped, 4 Delivered, 5 Cancelled.
+
+### Alterar status do pedido
+PATCH {{OrderFlow_Api_HostAddress}}/api/orders/{{orderId}}/status
+Content-Type: application/json
+
+{
+  "status": 1
+}
