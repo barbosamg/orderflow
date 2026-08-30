@@ -6,7 +6,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 
 | Campo | Valor |
 |---|---|
-| Data da última atualização | 2026-07-22 |
+| Data da última atualização | 2026-08-30 |
 | Fase atual | Fase 4 - API REST e casos de uso |
 | Último item concluído | `OrderService` e publisher RabbitMQ concluídos nos commits `19fcfc0` e `e3f3c26`, com build limpo e 89 testes aprovados |
 | Próximo item | Implementar `OrdersController` e depois a fila, o binding e o consumidor no Worker |
@@ -72,6 +72,12 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - A configuração RabbitMQ foi separada em `RabbitMqOptions`; conexão e canal são duradouros, o publisher é singleton e possui descarte assíncrono.
 - O guia `docs/rabbitmq-guia-de-estudo.md` documenta exchanges, tipos de fila, bindings, durabilidade, confirms, ack/nack, prefetch, DLQ, idempotência, observabilidade e Outbox.
 - Antes dos commits `19fcfc0` e `e3f3c26`, o build terminou sem erros ou avisos, os 89 testes existentes foram aprovados e `git diff --check` não encontrou problemas.
+- Em 2026-08-30, `PLAN.md`, `TODO.md`, `README.md` e este handoff foram alinhados ao estado já implementado do `OrderService`, ao nome canônico da fila `orderflow.worker.order-created` e ao próximo passo no `OrdersController`.
+- A coleção `src/OrderFlow.Api/OrderFlow.Api.http` deixou de apontar para o exemplo removido `weatherforecast` e passou a registrar o fluxo real de produtos, clientes e pedidos com identificadores preenchidos manualmente.
+- O arquivo residual `src/OrderFlow.Domain/Class1.cs`, criado pelo template inicial, foi removido por não representar nenhum conceito do domínio.
+- Em 2026-08-30, `dotnet build .\OrderFlow.slnx --no-restore` validou 7 projetos com 0 erros e 0 avisos; `dotnet test .\OrderFlow.slnx --no-build --no-restore` aprovou os 89 testes existentes, sem avisos.
+- O alinhamento dos artefatos de apoio foi registrado no commit `f8a7d24 chore: remove resíduos dos templates iniciais`.
+- O arquivo `docs/diagrama_arquitetura.jpg` foi preservado fora dos commits porque ainda apresenta o nome antigo da fila; ele deve ser revisado antes de ser versionado.
 
 ## Arquivos existentes na raiz
 
@@ -83,7 +89,7 @@ Registro vivo para retomar o projeto sem perder contexto. Atualizar este arquivo
 - `.gitignore` - regras de exclusão versionadas no repositório.
 - `OrderFlow.slnx` - solução .NET 10 com cinco projetos em `/src/` e um projeto em `/tests/`.
 
-O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. O commit funcional mais recente é `a7c3bf5 feat: adiciona persistência PostgreSQL e migration inicial`. A branch local está um commit à frente de `origin/main`. A solução contém os seis projetos-base, as entidades da Fase 2 e a persistência PostgreSQL concluída na Fase 3.
+O repositório Git está inicializado na branch `main`, com remoto `https://github.com/barbosamg/orderflow.git`. Os commits funcionais mais recentes são `19fcfc0 feat: implementa criação transacional de pedidos` e `e3f3c26 feat: adiciona publisher RabbitMQ para pedidos criados`; o alinhamento posterior dos artefatos de apoio foi registrado em `f8a7d24`. A solução contém os seis projetos-base, as Fases 1 a 3 concluídas e a Fase 4 em andamento no `OrdersController`.
 
 ## Decisões já tomadas
 

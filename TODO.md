@@ -369,18 +369,18 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 ### 5.7 Requisições de validação
 
-- [ ] Criar `requests/OrderFlow.http`.
-- [ ] Adicionar criação e listagem de produtos.
-- [ ] Adicionar criação e listagem de clientes.
-- [ ] Adicionar criação e consulta de pedido.
-- [ ] Adicionar alteração de status.
+- [x] Atualizar `src/OrderFlow.Api/OrderFlow.Api.http` com o fluxo real da API.
+- [x] Adicionar criação e listagem de produtos.
+- [x] Adicionar criação e listagem de clientes.
+- [x] Adicionar criação e consulta de pedido.
+- [x] Adicionar alteração de status.
 - [ ] Adicionar consulta do histórico.
 - [ ] Validar total calculado.
 - [ ] Validar baixa de estoque.
 - [ ] Validar rollback em falha intermediária.
-- [ ] Executar build e testes.
+- [x] Executar build e testes.
 - [ ] Criar o commit `feat: implementa API de produtos clientes e pedidos`.
-- [ ] Atualizar `handoff.md`.
+- [x] Atualizar `handoff.md`.
 
 ---
 
@@ -410,7 +410,7 @@ Checklist operacional completo para construir o projeto descrito no `PLAN.md` e 
 
 - [ ] Criar `OrderCreatedWorker`.
 - [ ] Declarar exchange `orderflow.events`.
-- [ ] Declarar fila durable `orderflow.order-created`.
+- [ ] Declarar fila durable `orderflow.worker.order-created`.
 - [ ] Criar binding para routing key `order.created`.
 - [ ] Configurar prefetch com `BasicQos`.
 - [ ] Consumir com `autoAck: false`.

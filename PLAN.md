@@ -259,7 +259,7 @@ Critério atendido em 2026-07-21: a migration `20260721233127_InitialCreate` foi
 - [ ] Configurar Controllers, OpenAPI nativo, arquivos estáticos e health check.
 - [ ] Criar coleção `.http` com o fluxo completo e dados encadeados.
 
-Progresso parcial em 2026-07-22: os contratos do fluxo de pedidos, o evento `OrderCreatedEvent`, a abstração do publisher, o repositório de pedidos, a consulta rastreada de produtos e a unidade de trabalho com transação serializável foram concluídos nos commits `4506838` e `3a09324`. O `OrderService` ainda precisa orquestrar essas peças antes que os itens de criação, estoque e publicação possam ser considerados concluídos.
+Progresso atualizado em 2026-08-30: os contratos do fluxo de pedidos, o evento `OrderCreatedEvent`, a abstração do publisher, o repositório de pedidos, a consulta rastreada de produtos e a unidade de trabalho com transação serializável foram concluídos nos commits `4506838` e `3a09324`. O `OrderService` e o publisher RabbitMQ foram concluídos nos commits `19fcfc0` e `e3f3c26`. A próxima entrega da fase é o `OrdersController` com criação, consulta e alteração de status; o histórico de mensagens permanece separado porque ainda depende dos contratos e da persistência do chat.
 
 #### Endpoints previstos
 

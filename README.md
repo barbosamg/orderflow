@@ -105,7 +105,7 @@ flowchart LR
 
     DB[(PostgreSQL<br/>dados duráveis)]
     Exchange{{RabbitMQ<br/>orderflow.events}}
-    Queue[[orderflow.order-created]]
+    Queue[[orderflow.worker.order-created]]
 
     Client -->|HTTP| API
     Client <-->|SignalR| API
